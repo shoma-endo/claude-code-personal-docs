@@ -1,6 +1,6 @@
-# Claude Code ドキュメントサイト
+# Claude Code Enterprise Docs
 
-Claude Code の社内ドキュメント・トレーニング資料を提供する Next.js 15 製の Web サイトです。
+Claude Code の法人向けドキュメント・ハンズオン研修資料を提供する Next.js 15 製の Web サイトです。
 
 ## 技術スタック
 

@@ -18,10 +18,10 @@ const shippori = Shippori_Mincho({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Claude Code Docs',
-    template: '%s | Claude Code Docs',
+    default: 'Claude Code Enterprise Docs',
+    template: '%s | Claude Code Enterprise Docs',
   },
-  description: 'Claude Code に関するドキュメント・研修資料を集約したリポジトリ',
+  description: 'Claude Code の法人向けドキュメント・ハンズオン研修資料を集約したリポジトリ',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
