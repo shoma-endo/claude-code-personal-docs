@@ -90,11 +90,20 @@ const components: Components = {
     }
     return <input type={type} {...props} />;
   },
-  pre: ({ children }) => (
-    <pre className="bg-slate-800 text-slate-100 p-4 rounded-lg mb-4 overflow-x-auto text-sm font-mono leading-relaxed [&>code]:bg-transparent [&>code]:p-0 [&>code]:text-inherit [&>code]:text-sm">
-      {children}
-    </pre>
-  ),
+  pre: ({ children, node }) => {
+    const code = node?.children?.[0];
+    const isMermaid =
+      code?.type === 'element' &&
+      code?.tagName === 'code' &&
+      Array.isArray(code?.properties?.className) &&
+      (code.properties.className as string[]).includes('language-mermaid');
+    if (isMermaid) return <>{children}</>;
+    return (
+      <pre className="bg-slate-800 text-slate-100 p-4 rounded-lg mb-4 overflow-x-auto text-sm font-mono leading-relaxed [&>code]:bg-transparent [&>code]:p-0 [&>code]:text-inherit [&>code]:text-sm">
+        {children}
+      </pre>
+    );
+  },
   code: ({ children, className }) => {
     if (className === 'language-mermaid') {
       return <MermaidDiagram code={String(children).trimEnd()} />;
