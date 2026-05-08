@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import type { Components } from 'react-markdown';
 import type { ReactNode } from 'react';
 import { slugify } from '@/lib/markdown';
+import { MermaidDiagram } from '@/components/MermaidDiagram';
 
 function textContent(node: ReactNode): string {
   if (typeof node === 'string') return node;
@@ -95,6 +96,9 @@ const components: Components = {
     </pre>
   ),
   code: ({ children, className }) => {
+    if (className === 'language-mermaid') {
+      return <MermaidDiagram code={String(children).trimEnd()} />;
+    }
     if (className?.includes('language-')) {
       return <code className={className}>{children}</code>;
     }
