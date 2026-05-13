@@ -6,6 +6,23 @@ import type { Components } from 'react-markdown';
 import type { ReactNode } from 'react';
 import { slugify } from '@/lib/markdown';
 import { MermaidDiagram } from '@/components/MermaidDiagram';
+import { remarkAlerts } from '@/lib/remark-alerts';
+
+type AlertType = 'NOTE' | 'TIP' | 'IMPORTANT' | 'WARNING' | 'CAUTION';
+
+const ALERT_CONFIG: Record<AlertType, {
+  label: string;
+  icon: string;
+  borderClass: string;
+  bgClass: string;
+  labelClass: string;
+}> = {
+  NOTE:      { label: '補足',   icon: 'ℹ️',  borderClass: 'border-blue-400',    bgClass: 'bg-blue-50',    labelClass: 'text-blue-700' },
+  TIP:       { label: 'ヒント', icon: '💡',  borderClass: 'border-emerald-400', bgClass: 'bg-emerald-50', labelClass: 'text-emerald-700' },
+  IMPORTANT: { label: '重要',   icon: '❗',  borderClass: 'border-violet-400',  bgClass: 'bg-violet-50',  labelClass: 'text-violet-700' },
+  WARNING:   { label: '注意',   icon: '⚠️',  borderClass: 'border-amber-400',   bgClass: 'bg-amber-50',   labelClass: 'text-amber-700' },
+  CAUTION:   { label: '警告',   icon: '🚫',  borderClass: 'border-red-400',     bgClass: 'bg-red-50',     labelClass: 'text-red-700' },
+};
 
 function textContent(node: ReactNode): string {
   if (typeof node === 'string') return node;
@@ -149,11 +166,33 @@ const components: Components = {
       {children}
     </a>
   ),
-  blockquote: ({ children }) => (
-    <blockquote className="border-l-4 border-amber-400 bg-amber-50 pl-4 py-2 text-gray-600 my-4 rounded-r">
-      {children}
-    </blockquote>
-  ),
+  blockquote: ({ children, node }) => {
+    const classNames = node?.properties?.className;
+    const classList = Array.isArray(classNames) ? classNames.map(String) : [];
+    const alertClass = classList.find(c => c.startsWith('alert-'));
+    const alertType = alertClass?.replace('alert-', '').toUpperCase() as AlertType | undefined;
+    const cfg = alertType ? ALERT_CONFIG[alertType] : undefined;
+
+    if (cfg) {
+      return (
+        <div className={`border-l-4 ${cfg.borderClass} ${cfg.bgClass} rounded-r-lg my-5`}>
+          <div className={`flex items-center gap-1.5 px-4 pt-3 pb-1 font-semibold text-sm ${cfg.labelClass}`}>
+            <span aria-hidden="true">{cfg.icon}</span>
+            <span>{cfg.label}</span>
+          </div>
+          <div className="px-4 pb-3 [&>p]:mb-2 [&>p:last-child]:mb-0">
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <blockquote className="border-l-4 border-amber-400 bg-amber-50 pl-4 py-2 text-gray-600 my-4 rounded-r">
+        {children}
+      </blockquote>
+    );
+  },
   hr: () => <hr className="my-8 border-slate-200" />,
   strong: ({ children }) => (
     <strong className="font-semibold text-slate-800">{children}</strong>
@@ -169,7 +208,7 @@ const components: Components = {
 
 export function MarkdownRenderer({ content }: { content: string }) {
   return (
-    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+    <ReactMarkdown remarkPlugins={[remarkGfm, remarkAlerts]} components={components}>
       {content}
     </ReactMarkdown>
   );
