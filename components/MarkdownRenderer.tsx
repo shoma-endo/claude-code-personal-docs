@@ -183,16 +183,24 @@ const components: Components = {
       {children}
     </td>
   ),
-  a: ({ href, children }) => (
-    <a
-      href={href}
-      className="text-blue-600 hover:text-blue-800 underline"
-      target={href?.startsWith('http') ? '_blank' : undefined}
-      rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-    >
-      {children}
-    </a>
-  ),
+  a: ({ href, children }) => {
+    const isExternal = href?.startsWith('http');
+    return (
+      <a
+        href={href}
+        className="text-blue-600 hover:text-blue-800 underline inline-flex items-center gap-0.5"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+      >
+        {children}
+        {isExternal && (
+          <svg xmlns="http://www.w3.org/2000/svg" className="inline size-3 shrink-0 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-label="新しいタブで開く">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        )}
+      </a>
+    );
+  },
   blockquote: ({ children, node }) => {
     const classNames = node?.properties?.className;
     const classList = Array.isArray(classNames) ? classNames.map(String) : [];
@@ -228,6 +236,7 @@ const components: Components = {
     <img
       src={src}
       alt={alt ?? ''}
+      loading="lazy"
       className="max-w-full rounded-lg my-4 shadow"
     />
   ),
