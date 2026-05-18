@@ -78,7 +78,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
           <>
             <MarkdownRenderer content={intro} />
             <div
-              className="mb-6 rounded-r-lg border border-amber-200/90 border-l-4 border-l-amber-400 bg-amber-50 px-5 py-6 shadow-sm ring-1 ring-amber-100/80 md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
+              className="mb-6 rounded-r-lg border border-slate-200 border-l-4 border-l-blue-600 bg-slate-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
               aria-label="事前準備"
             >
               <MarkdownRenderer content={prep} />
