@@ -2,6 +2,7 @@
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 import type { Components } from 'react-markdown';
 import { useState } from 'react';
 import type { ReactNode } from 'react';
@@ -145,10 +146,10 @@ const components: Components = {
       Array.isArray(code?.properties?.className) &&
       (code.properties.className as string[]).includes('language-mermaid');
     if (isMermaid) return <>{children}</>;
-    return <CodeBlock node={node as Record<string, unknown>}>{children}</CodeBlock>;
+    return <CodeBlock node={node as unknown as Record<string, unknown>}>{children}</CodeBlock>;
   },
   code: ({ children, className }) => {
-    if (className === 'language-mermaid') {
+    if (className?.includes('language-mermaid')) {
       return <MermaidDiagram code={String(children).trimEnd()} />;
     }
     if (className?.includes('language-')) {
@@ -234,7 +235,7 @@ const components: Components = {
 
 export function MarkdownRenderer({ content }: { content: string }) {
   return (
-    <ReactMarkdown remarkPlugins={[remarkGfm, remarkAlerts]} components={components}>
+    <ReactMarkdown remarkPlugins={[remarkGfm, remarkAlerts]} rehypePlugins={[rehypeHighlight]} components={components}>
       {content}
     </ReactMarkdown>
   );
