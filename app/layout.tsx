@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className={`${zenKaku.variable} ${shippori.variable}`}>
-      <body className="bg-white text-gray-900 font-sans">
+      <body className="bg-white text-slate-900 font-sans">
         {children}
       </body>
     </html>

@@ -83,23 +83,23 @@ function createHeading(
 }
 
 const components: Components = {
-  h1: createHeading('h1', 'text-3xl font-bold mb-6 text-gray-900'),
+  h1: createHeading('h1', 'text-3xl font-bold mb-6 text-slate-900'),
   h2: createHeading(
     'h2',
-    'text-2xl font-semibold mb-4 mt-10 pb-2 border-b border-slate-200 text-gray-800',
+    'text-2xl font-semibold mb-4 mt-10 pb-2 border-b border-slate-200 text-slate-800',
   ),
-  h3: createHeading('h3', 'text-xl font-medium mb-3 mt-6 text-gray-700'),
-  h4: createHeading('h4', 'text-lg font-medium mb-2 mt-5 text-gray-700'),
+  h3: createHeading('h3', 'text-xl font-medium mb-3 mt-6 text-slate-700'),
+  h4: createHeading('h4', 'text-lg font-medium mb-2 mt-5 text-slate-700'),
   p: ({ children }) => (
-    <p className="mb-4 text-gray-600 leading-relaxed">{children}</p>
+    <p className="mb-4 text-slate-600 leading-relaxed">{children}</p>
   ),
   ul: ({ children }) => (
-    <ul className="list-disc list-inside mb-4 space-y-1.5 text-gray-600">
+    <ul className="list-disc list-inside mb-4 space-y-1.5 text-slate-600">
       {children}
     </ul>
   ),
   ol: ({ children }) => (
-    <ol className="list-decimal list-inside mb-4 space-y-1.5 text-gray-600">
+    <ol className="list-decimal list-inside mb-4 space-y-1.5 text-slate-600">
       {children}
     </ol>
   ),
@@ -115,7 +115,7 @@ const components: Components = {
             type="checkbox"
             checked={checked}
             readOnly
-            className="mt-1 size-4 rounded border-gray-300"
+            className="mt-1 size-4 rounded border-slate-300"
           />
           <span>{children}</span>
         </li>
@@ -130,7 +130,7 @@ const components: Components = {
           type="checkbox"
           checked={checked}
           readOnly
-          className="size-4 rounded border-gray-300 mr-2"
+          className="size-4 rounded border-slate-300 mr-2"
           {...props}
         />
       );
@@ -214,7 +214,7 @@ const components: Components = {
     }
 
     return (
-      <blockquote className="border-l-4 border-amber-400 bg-amber-50 pl-4 py-2 text-gray-600 my-4 rounded-r">
+      <blockquote className="border-l-4 border-amber-400 bg-amber-50 pl-4 py-2 text-slate-600 my-4 rounded-r">
         {children}
       </blockquote>
     );
