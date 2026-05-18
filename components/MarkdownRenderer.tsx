@@ -72,9 +72,10 @@ function createHeading(
     const text = textContent(children);
     const id = slugify(text);
     return (
-      <Tag id={id} className={`${className} scroll-mt-20`}>
+      <Tag id={id} className={`${className} scroll-mt-20 group`}>
         <a href={`#${id}`} className="no-underline text-inherit hover:text-inherit">
           {children}
+          <span className="ml-2 text-slate-400 opacity-0 transition-opacity group-hover:opacity-100 text-base font-normal select-none">#</span>
         </a>
       </Tag>
     );
