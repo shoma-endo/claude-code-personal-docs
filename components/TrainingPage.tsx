@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { TocSidebar } from '@/components/TocSidebar';
 import type { TocEntry, TrainingSections } from '@/lib/markdown';
@@ -21,12 +21,33 @@ interface Props extends TrainingSections {
 export function TrainingPage({ intro, prep, session1, session2, session3, tocByTab }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>('overview');
   const [tocOpen, setTocOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const tocButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const tab = params.get('tab') as TabId;
     if (TABS.find((t) => t.id === tab)) setActiveTab(tab);
   }, []);
+
+  // ドロワーが開いたらフォーカスを移動、閉じたら元のボタンに戻す
+  useEffect(() => {
+    if (tocOpen) {
+      drawerRef.current?.focus();
+    } else {
+      tocButtonRef.current?.focus();
+    }
+  }, [tocOpen]);
+
+  // Escape キーでドロワーを閉じる
+  useEffect(() => {
+    if (!tocOpen) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setTocOpen(false);
+    }
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [tocOpen]);
 
   function switchTab(tab: TabId) {
     setActiveTab(tab);
@@ -59,8 +80,10 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
             return (
               <button
                 key={tab.id}
+                id={`tab-${tab.id}`}
                 role="tab"
                 aria-selected={isActive}
+                aria-controls="tab-panel"
                 onClick={() => switchTab(tab.id)}
                 className={`-mb-px border-b-2 px-5 py-3 text-sm font-medium transition-colors ${
                   isActive
@@ -74,19 +97,27 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
           })}
         </nav>
 
-        {activeTab === 'overview' ? (
-          <>
-            <MarkdownRenderer content={intro} />
-            <div
-              className="mb-6 rounded-r-lg border border-slate-200 border-l-4 border-l-blue-600 bg-slate-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
-              aria-label="事前準備"
-            >
-              <MarkdownRenderer content={prep} />
-            </div>
-          </>
-        ) : (
-          <MarkdownRenderer content={sessionContent[activeTab as 'session1' | 'session2' | 'session3']} />
-        )}
+        <div
+          id="tab-panel"
+          role="tabpanel"
+          aria-labelledby={`tab-${activeTab}`}
+          tabIndex={0}
+          className="outline-none"
+        >
+          {activeTab === 'overview' ? (
+            <>
+              <MarkdownRenderer content={intro} />
+              <div
+                className="mb-6 rounded-r-lg border border-slate-200 border-l-4 border-l-blue-600 bg-slate-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
+                aria-label="事前準備"
+              >
+                <MarkdownRenderer content={prep} />
+              </div>
+            </>
+          ) : (
+            <MarkdownRenderer content={sessionContent[activeTab as 'session1' | 'session2' | 'session3']} />
+          )}
+        </div>
       </article>
 
       <aside className="hidden xl:block min-w-0">
@@ -96,8 +127,11 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
 
       {/* Mobile ToC floating button */}
       <button
+        ref={tocButtonRef}
         onClick={() => setTocOpen(true)}
         aria-label="目次を開く"
+        aria-expanded={tocOpen}
+        aria-controls="mobile-toc-drawer"
         className="fixed bottom-6 right-6 z-20 flex items-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-sm font-medium text-white shadow-lg xl:hidden"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -110,7 +144,15 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
       {tocOpen && (
         <div className="fixed inset-0 z-30 xl:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setTocOpen(false)} />
-          <div className="absolute bottom-0 right-0 top-0 w-72 overflow-y-auto bg-white p-6 shadow-xl">
+          <div
+            ref={drawerRef}
+            id="mobile-toc-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="目次"
+            tabIndex={-1}
+            className="absolute bottom-0 right-0 top-0 w-72 overflow-y-auto bg-white p-6 shadow-xl outline-none"
+          >
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">目次</h2>
               <button
