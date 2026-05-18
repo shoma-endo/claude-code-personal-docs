@@ -151,7 +151,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
             aria-modal="true"
             aria-label="目次"
             tabIndex={-1}
-            className="absolute bottom-0 right-0 top-0 w-72 overflow-y-auto bg-white p-6 shadow-xl outline-none"
+            className="absolute bottom-0 right-0 top-0 w-72 max-w-[calc(100vw-2rem)] overflow-y-auto bg-white p-6 shadow-xl outline-none"
           >
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">目次</h2>

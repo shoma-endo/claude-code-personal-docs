@@ -5,10 +5,6 @@ import { TrainingPage } from '@/components/TrainingPage';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { TocSidebar } from '@/components/TocSidebar';
 
-export const metadata = {
-  title: 'Claude Code Enterprise Docs',
-  description: 'Claude Code 法人向けハンズオン研修資料',
-};
 
 export default async function HomePage() {
   const filePath = join(
