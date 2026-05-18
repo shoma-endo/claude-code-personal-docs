@@ -16,12 +16,10 @@ export function TocSidebar({ entries }: { entries: TocEntry[] }) {
 
     const observer = new IntersectionObserver(
       (observerEntries) => {
-        for (const entry of observerEntries) {
-          if (entry.isIntersecting) {
-            setActiveSlug(entry.target.id);
-            break;
-          }
-        }
+        const visible = observerEntries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) setActiveSlug(visible[0].target.id);
       },
       { rootMargin: '-80px 0px -60% 0px', threshold: 0 },
     );
