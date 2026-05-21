@@ -1,6 +1,6 @@
-# Claude Code Enterprise Docs
+# Claude Code Personal Docs
 
-Claude Code の法人向けドキュメント・ハンズオン研修資料を提供する Next.js 15 製の Web サイトです。
+Claude Code のドキュメント・ハンズオン研修資料を提供する Next.js 15 製の Web サイト（リポジトリ名: `claude-code-personal-docs`）です。
 
 ## 技術スタック
 
@@ -72,23 +72,23 @@ lib/
 2. サーバーコンポーネントで Markdown ファイルを読み込み（`fs/promises`）
 3. `MarkdownRenderer` + `TocSidebar` を組み合わせて、`app/page.tsx` のパターンに従い描画
 
-## Git リモート（enterprise / personal）
+## Git リモート（personal / enterprise）
 
 このリポジトリは GitHub 上の 2 リポジトリと連携する。
 
 | リモート名 | 用途 | URL |
 |-----------|------|-----|
-| `origin` | 法人向け（enterprise） | https://github.com/shoma-endo/claude-code-enterprise-docs |
-| `personal` | 個人用（personal） | git@github.com:shoma-endo/claude-code-personal-docs |
+| `origin` | 本番（personal） | https://github.com/shoma-endo/claude-code-personal-docs |
+| `enterprise` | ミラー（enterprise） | https://github.com/shoma-endo/claude-code-enterprise-docs |
 
-`main` の上流は `origin/main`（enterprise）。日常の `git pull` / `git push` は enterprise 向け。
+`main` の上流は `origin/main`（personal）。日常の `git pull` / `git push` は personal 向け。
 
 ```bash
-# enterprise のみ
+# personal のみ（デフォルト）
 git push origin
 
-# personal のみ
-git push personal
+# enterprise のみ
+git push enterprise
 
 # 両方まとめて（エイリアス）
 git push-all
