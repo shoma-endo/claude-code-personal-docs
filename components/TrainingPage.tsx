@@ -5,20 +5,19 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { TocSidebar } from '@/components/TocSidebar';
 import type { TocEntry, TrainingSections } from '@/lib/markdown';
 
-type TabId = 'overview' | 'session1' | 'session2' | 'session3';
+type TabId = 'overview' | 'session1' | 'session2';
 
 const TABS: { id: TabId; label: string }[] = [
   { id: 'overview', label: '概要 & 事前準備' },
   { id: 'session1', label: 'Session 1' },
   { id: 'session2', label: 'Session 2' },
-  { id: 'session3', label: 'Session 3' },
 ];
 
 interface Props extends TrainingSections {
   tocByTab: Record<TabId, TocEntry[]>;
 }
 
-export function TrainingPage({ intro, prep, session1, session2, session3, tocByTab }: Props) {
+export function TrainingPage({ intro, prep, session1, session2, tocByTab }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>('overview');
   const [tocOpen, setTocOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -57,10 +56,9 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
-  const sessionContent: Record<'session1' | 'session2' | 'session3', string> = {
+  const sessionContent: Record<'session1' | 'session2', string> = {
     session1,
     session2,
-    session3,
   };
 
   const minLevel = Math.min(...tocByTab[activeTab].map((e) => e.level));
@@ -115,7 +113,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
               </div>
             </>
           ) : (
-            <MarkdownRenderer content={sessionContent[activeTab as 'session1' | 'session2' | 'session3']} />
+            <MarkdownRenderer content={sessionContent[activeTab as 'session1' | 'session2']} />
           )}
         </div>
       </article>

@@ -28,9 +28,9 @@ lint・テストスクリプトは未設定。
 
 ## アーキテクチャ
 
-**データフロー**: 研修コンテンツは `docs/training/` 配下の Markdown で管理。サーバーコンポーネント `app/page.tsx` がリクエスト時に `fs/promises` でファイルを読み込み、`lib/markdown.ts` の `splitTrainingSections` で `intro` / `prep` / `session1` / `session2` / `session3` の 5 セクションに分割、各セクションごとに `extractToc` で目次を抽出してクライアントコンポーネント `TrainingPage` に渡す。分割に失敗した場合は単一ページとしてそのまま描画する。
+**データフロー**: 研修コンテンツは `docs/training/` 配下の Markdown で管理。サーバーコンポーネント `app/page.tsx` がリクエスト時に `fs/promises` でファイルを読み込み、`lib/markdown.ts` の `splitTrainingSections` で `intro` / `prep` / `session1` / `session2` の 4 セクションに分割、各セクションごとに `extractToc` で目次を抽出してクライアントコンポーネント `TrainingPage` に渡す。分割に失敗した場合は単一ページとしてそのまま描画する。
 
-**UI**: `TrainingPage` は「概要 & 事前準備」「Session 1」「Session 2」「Session 3」のタブ式（1Day 研修の時間ブロック想定）。現在のタブは `?tab=` クエリパラメータと同期する。`xl` 以上では右側に sticky な目次サイドバー、`xl` 未満では右下に浮かぶフローティングボタンからドロワー目次を開く。
+**UI**: `TrainingPage` は「概要 & 事前準備」「Session 1」「Session 2」のタブ式（1Day 研修の時間ブロック想定）。現在のタブは `?tab=` クエリパラメータと同期する。`xl` 以上では右側に sticky な目次サイドバー、`xl` 未満では右下に浮かぶフローティングボタンからドロワー目次を開く。
 
 ## ディレクトリ構成
 
@@ -72,7 +72,7 @@ lib/
 `splitTrainingSections` が依存しているため、タブ分割を維持する場合は以下の見出しを変更しないこと:
 
 - `## 事前準備`
-- `## Session 1 — …` / `## Session 2 — …` / `## Session 3 — …`（各 Session の直前に `---` 区切りが必要）
+- `## Session 1 — …` / `## Session 2 — …`（各 Session の直前に `---` 区切りが必要）
 
 別形式（単一ページのみ）にする場合は、上記見出しを外せば `app/page.tsx` が単一ページモードで描画する。
 
