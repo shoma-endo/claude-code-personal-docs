@@ -71,7 +71,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
 
       <article className="mx-auto min-w-0 max-w-5xl xl:mx-0 xl:max-w-none">
         <nav
-          className="sticky top-0 z-10 mb-8 flex gap-0 border-b border-slate-200 bg-white"
+          className="sticky top-0 z-10 mb-8 flex gap-0 border-b border-orange-200 bg-orange-50"
           role="tablist"
           aria-label="1Day 研修セッション"
         >
@@ -87,8 +87,8 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
                 onClick={() => switchTab(tab.id)}
                 className={`-mb-px border-b-2 px-5 py-3 text-sm font-medium transition-colors ${
                   isActive
-                    ? 'border-blue-600 text-blue-600'
-                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-800'
+                    ? 'border-orange-500 text-orange-700'
+                    : 'border-transparent text-slate-600 hover:border-orange-300 hover:text-slate-800'
                 }`}
               >
                 {tab.label}
@@ -108,7 +108,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
             <>
               <MarkdownRenderer content={intro} />
               <div
-                className="mb-6 rounded-r-lg border border-slate-200 border-l-4 border-l-blue-600 bg-slate-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
+                className="mb-6 rounded-r-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
                 aria-label="事前準備"
               >
                 <MarkdownRenderer content={prep} />
@@ -132,7 +132,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
         aria-label="目次を開く"
         aria-expanded={tocOpen}
         aria-controls="mobile-toc-drawer"
-        className="fixed bottom-6 right-6 z-20 flex items-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-sm font-medium text-white shadow-lg xl:hidden"
+        className="fixed bottom-6 right-6 z-20 flex items-center gap-2 rounded-full bg-orange-700 px-4 py-3 text-sm font-medium text-white shadow-lg xl:hidden"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h10" />
@@ -151,10 +151,10 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
             aria-modal="true"
             aria-label="目次"
             tabIndex={-1}
-            className="absolute bottom-0 right-0 top-0 w-72 max-w-[calc(100vw-2rem)] overflow-y-auto bg-white p-6 shadow-xl outline-none"
+            className="absolute bottom-0 right-0 top-0 w-72 max-w-[calc(100vw-2rem)] overflow-y-auto bg-orange-50 p-6 shadow-xl outline-none"
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">目次</h2>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500">目次</h2>
               <button
                 onClick={() => setTocOpen(false)}
                 aria-label="目次を閉じる"
@@ -171,7 +171,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
                   <a
                     href={`#${entry.slug}`}
                     onClick={() => setTocOpen(false)}
-                    className="block py-1 leading-snug text-slate-500 transition-colors hover:text-slate-800"
+                    className="block py-1 leading-snug text-slate-600 transition-colors hover:text-slate-800"
                   >
                     {entry.text}
                   </a>

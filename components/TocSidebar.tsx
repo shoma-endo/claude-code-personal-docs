@@ -30,7 +30,7 @@ export function TocSidebar({ entries }: { entries: TocEntry[] }) {
 
   return (
     <nav className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto">
-      <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">
+      <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">
         目次
       </h2>
       <ul className="space-y-0.5 text-[13px] border-l border-slate-200">
@@ -45,8 +45,8 @@ export function TocSidebar({ entries }: { entries: TocEntry[] }) {
                 href={`#${entry.slug}`}
                 className={`block py-1 leading-snug transition-colors ${
                   isActive
-                    ? 'text-blue-600 font-medium border-l-2 border-blue-600 -ml-px pl-[11px]'
-                    : 'text-slate-500 hover:text-slate-800'
+                    ? 'text-orange-700 font-medium border-l-2 border-orange-500 -ml-px pl-[11px]'
+                    : 'text-slate-600 hover:text-slate-800'
                 }`}
               >
                 {entry.text}
