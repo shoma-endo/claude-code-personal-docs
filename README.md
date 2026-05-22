@@ -49,6 +49,7 @@ docs/
   training/
     claude-code-personal/
       claude-code-personal-training.md   # 1Day 個人研修の本体（編集対象）
+      sample-data/                     # 講義用ワークスペース（CLAUDE.md 等。受講者はこのフォルダを開く）
 lib/
   markdown.ts           # slugify / extractToc / splitTrainingSections
   remark-alerts.ts      # GitHub 風アラート構文を blockquote のクラスへ変換する remark プラグイン
