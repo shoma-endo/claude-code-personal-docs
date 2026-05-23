@@ -20,7 +20,7 @@ claude
 
 1. **`sample-data` フォルダ** を VS Code / Cursor / Antigravity IDE で「フォルダを開く」
 2. 内蔵ターミナル（`` Ctrl + ` ``）で同じフォルダにいることを確認
-3. `claude` を起動
+3. `claude` を起動（事前準備で済ませておく）
 
 ```bash
 claude
@@ -34,13 +34,13 @@ claude
 ```text
 sample-data/
 ├── README.md
-├── CLAUDE.md                   # Session 2 §10 以降
-├── meeting-memo.txt            # Session 2 §18 用（ダミー）
+├── CLAUDE.md                   # Session 2 §8 以降
+├── meeting-memo.txt            # Session 2 §16 用（ダミー）
 ├── .claude/
-│   ├── settings.json           # §12 の設定例
+│   ├── settings.json           # §10 の設定例
 │   └── skills/
 │       └── meeting-summary/
-│           └── SKILL.md        # §14・§18 の Skill 例
+│           └── SKILL.md        # §12・§16 の Skill 例
 └── examples/                   # 演習後の模範（2 ファイル）
     ├── about-me.md
     └── meeting-summary.md
@@ -50,12 +50,12 @@ sample-data/
 
 | セッション | 対象 | 使い方 |
 |---|---|---|
-| Session 2 §4 以降 | このフォルダ全体 | エディターで開き、同じパスで `claude` を起動 |
-| Session 2 §10〜§12 | `CLAUDE.md`、`.claude/` | 実物を開きながら学ぶ |
-| Session 2 §14 | `.claude/skills/meeting-summary/` | Skill の中身を読む |
-| Session 2 §17 | ルート | `about-me.md` を作成。模範は `examples/about-me.md` |
-| Session 2 §18 | `meeting-memo.txt` | 要約演習。模範は `examples/meeting-summary.md` |
-| Session 2 §19 | `CLAUDE.md` | 既存ルールに 1 行追記 |
+| Session 2 全体 | このフォルダ全体 | 事前準備 §④ で開き、同じパスで `claude` を起動 |
+| Session 2 §8〜§10 | `CLAUDE.md`、`.claude/` | 実物を開きながら学ぶ |
+| Session 2 §12 | `.claude/skills/meeting-summary/` | Skill の中身を読む |
+| Session 2 §15 | ルート | `about-me.md` を作成。模範は `examples/about-me.md` |
+| Session 2 §16 | `meeting-memo.txt` | 要約演習。模範は `examples/meeting-summary.md` |
+| Session 2 §17 | `CLAUDE.md` | 既存ルールに 1 行追記 |
 
 ## データの出典
 
