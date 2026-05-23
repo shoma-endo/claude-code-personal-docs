@@ -5,6 +5,7 @@ export type TrainingSections = {
   prep: string;
   session1: string;
   session2: string;
+  session3: string;
 };
 
 export function splitTrainingSections(markdown: string): TrainingSections | null {
@@ -12,14 +13,16 @@ export function splitTrainingSections(markdown: string): TrainingSections | null
   const sep = '\n---\n\n';
   const s1Pos = markdown.indexOf(`${sep}## Session 1 —`);
   const s2Pos = markdown.indexOf(`${sep}## Session 2 —`);
+  const s3Pos = markdown.indexOf(`${sep}## Session 3 —`);
 
-  if (prepStart === -1 || s1Pos === -1 || s2Pos === -1) return null;
+  if (prepStart === -1 || s1Pos === -1 || s2Pos === -1 || s3Pos === -1) return null;
 
   return {
     intro: markdown.slice(0, prepStart),
     prep: markdown.slice(prepStart, s1Pos),
     session1: markdown.slice(s1Pos + sep.length, s2Pos),
-    session2: markdown.slice(s2Pos + sep.length),
+    session2: markdown.slice(s2Pos + sep.length, s3Pos),
+    session3: markdown.slice(s3Pos + sep.length),
   };
 }
 

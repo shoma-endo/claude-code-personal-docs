@@ -33,6 +33,7 @@ export default async function HomePage() {
     overview: [...extractToc(sections.intro), ...extractToc(sections.prep)],
     session1: extractToc(sections.session1),
     session2: extractToc(sections.session2),
+    session3: extractToc(sections.session3),
   };
 
   return <TrainingPage {...sections} tocByTab={tocByTab} />;

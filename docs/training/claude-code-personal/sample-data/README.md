@@ -34,8 +34,8 @@ claude
 ```text
 sample-data/
 ├── README.md
-├── CLAUDE.md                   # Session 1 §10 以降
-├── meeting-memo.txt            # Session 1 §18 用（ダミー）
+├── CLAUDE.md                   # Session 2 §10 以降
+├── meeting-memo.txt            # Session 2 §18 用（ダミー）
 ├── .claude/
 │   ├── settings.json           # §12 の設定例
 │   └── skills/
@@ -50,12 +50,12 @@ sample-data/
 
 | セッション | 対象 | 使い方 |
 |---|---|---|
-| Session 1 §4 以降 | このフォルダ全体 | エディターで開き、同じパスで `claude` を起動 |
-| Session 1 §10〜§12 | `CLAUDE.md`、`.claude/` | 実物を開きながら学ぶ |
-| Session 1 §14 | `.claude/skills/meeting-summary/` | Skill の中身を読む |
-| Session 1 §17 | ルート | `about-me.md` を作成。模範は `examples/about-me.md` |
-| Session 1 §18 | `meeting-memo.txt` | 要約演習。模範は `examples/meeting-summary.md` |
-| Session 1 §19 | `CLAUDE.md` | 既存ルールに 1 行追記 |
+| Session 2 §4 以降 | このフォルダ全体 | エディターで開き、同じパスで `claude` を起動 |
+| Session 2 §10〜§12 | `CLAUDE.md`、`.claude/` | 実物を開きながら学ぶ |
+| Session 2 §14 | `.claude/skills/meeting-summary/` | Skill の中身を読む |
+| Session 2 §17 | ルート | `about-me.md` を作成。模範は `examples/about-me.md` |
+| Session 2 §18 | `meeting-memo.txt` | 要約演習。模範は `examples/meeting-summary.md` |
+| Session 2 §19 | `CLAUDE.md` | 既存ルールに 1 行追記 |
 
 ## データの出典
 
