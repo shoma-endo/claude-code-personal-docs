@@ -2,9 +2,23 @@
 
 Claude Code 個人向け 1Day 講義の演習用フォルダです。**エディターで開くのはこの `sample-data` フォルダ**（`CLAUDE.md` がルートに見える階層）です。実在の顧客名・個人名・金額は含みません。
 
+## ダウンロード
+
+1. [GitHub の sample-data フォルダ](https://github.com/shoma-endo/claude-code-personal-docs/tree/main/docs/training/claude-code-personal/sample-data) を開く
+2. **Code → Download ZIP** で取得するか、配布されたアーカイブを使う
+3. 解凍後、**`sample-data` フォルダ**（`CLAUDE.md` が直下にある階層）をエディターで開く
+
+任意で作業フォルダを分ける場合:
+
+```bash
+cp -r sample-data ~/claude-code-personal
+cd ~/claude-code-personal
+claude
+```
+
 ## エディターで開く
 
-1. この **`sample-data` フォルダ** を VS Code / Cursor / Antigravity IDE で「フォルダを開く」
+1. **`sample-data` フォルダ** を VS Code / Cursor / Antigravity IDE で「フォルダを開く」
 2. 内蔵ターミナル（`` Ctrl + ` ``）で同じフォルダにいることを確認
 3. `claude` を起動
 
@@ -13,42 +27,13 @@ claude
 ```
 
 > [!IMPORTANT]
-> **親フォルダ（`claude-code-personal` など）を開かないでください。** ルートに `CLAUDE.md` と `meeting-memo.txt` が並んで見えていれば正しい階層です。`claude-code-personal` という名前の**子フォルダだけ**が見える場合は、1 階層深すぎます。
-
-## ホームにコピーして使う場合（推奨）
-
-リポジトリ内のパスが長いときは、コピー先を講義用の作業フォルダにします。
-
-```bash
-cp -r docs/training/claude-code-personal/sample-data ~/claude-code-personal
-cd ~/claude-code-personal
-claude
-```
-
-コピー後は **`~/claude-code-personal`** をエディターで開きます（中身はこの `sample-data` と同じ構成です）。
-
-## その他の取得方法
-
-### GitHub から clone 済みの場合
-
-```bash
-cd claude-code-personal-docs/docs/training/claude-code-personal/sample-data
-claude
-```
-
-### ZIP で取得した場合
-
-解凍後、次のフォルダをエディターで開きます。
-
-`claude-code-personal-docs/docs/training/claude-code-personal/sample-data/`
-
-（末尾が **`sample-data`** であること。その中に `CLAUDE.md` があること。）
+> ルートに `CLAUDE.md` と `meeting-memo.txt` が並んで見えていれば正しい階層です。
 
 ## フォルダ構成
 
 ```text
-sample-data/                    # ← エディターで開くのはここ
-├── README.md                   # このファイル
+sample-data/
+├── README.md
 ├── CLAUDE.md                   # Session 1 §10 以降
 ├── meeting-memo.txt            # Session 1 §18 用（ダミー）
 ├── .claude/
@@ -56,7 +41,7 @@ sample-data/                    # ← エディターで開くのはここ
 │   └── skills/
 │       └── meeting-summary/
 │           └── SKILL.md        # §14・§18 の Skill 例
-└── examples/                   # Session 1 の模範のみ（2 ファイル）
+└── examples/                   # 演習後の模範（2 ファイル）
     ├── about-me.md
     └── meeting-summary.md
 ```
@@ -65,13 +50,12 @@ sample-data/                    # ← エディターで開くのはここ
 
 | セッション | 対象 | 使い方 |
 |---|---|---|
-| Session 1 **§4 以降** | このフォルダ全体 | エディターで開き、同じパスで `claude` を起動 |
-| Session 1 §10〜§12 | `CLAUDE.md`、`.claude/` | 実物を開きながら講義・対話 |
+| Session 1 §4 以降 | このフォルダ全体 | エディターで開き、同じパスで `claude` を起動 |
+| Session 1 §10〜§12 | `CLAUDE.md`、`.claude/` | 実物を開きながら学ぶ |
 | Session 1 §14 | `.claude/skills/meeting-summary/` | Skill の中身を読む |
 | Session 1 §17 | ルート | `about-me.md` を作成。模範は `examples/about-me.md` |
 | Session 1 §18 | `meeting-memo.txt` | 要約演習。模範は `examples/meeting-summary.md` |
 | Session 1 §19 | `CLAUDE.md` | 既存ルールに 1 行追記 |
-| Session 2 §7 | （なし） | `manual-secretary/` は Claude に新規作成させる（配布物に含めない） |
 
 ## データの出典
 

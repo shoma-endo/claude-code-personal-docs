@@ -1,8 +1,9 @@
 # Claude Code Personal Docs
 
-Claude Code **個人向け 1Day 研修**の資料を配信する Next.js 15 製の Web サイト（リポジトリ名: `claude-code-personal-docs`）です。
+Claude Code **個人向け 1Day 研修**の資料を配信する Next.js 15 製の Web サイトです。
 
-研修の本文・演習・到達目標は **これから策定** します。現時点では骨組み（概要 / 事前準備 / Session 1–3）のみを置いています。
+- **受講者向け**: `/` — 演習・事前準備・到達目標
+- **講師向け（社内）**: `/internal` — 進行表・時間配分・社内リンク（`noindex`）
 
 ## 技術スタック
 
@@ -66,11 +67,14 @@ lib/
 
 ## コンテンツの編集
 
-1Day 個人研修の本文は次を編集する:
+研修の本文は次を編集する:
 
-`docs/training/claude-code-personal/claude-code-personal-training.md`
+| 用途 | ファイル | Web |
+|---|---|---|
+| **受講者向け（外部）** | `docs/training/claude-code-personal/claude-code-personal-training.md` | `/` |
+| **講師向け（社内）** | `docs/training/claude-code-personal/claude-code-personal-training-internal.md` | `/internal` |
 
-`splitTrainingSections` が依存しているため、タブ分割を維持する場合は以下の見出しを変更しないこと:
+`splitTrainingSections` が依存しているため、**受講者向け**でタブ分割を維持する場合は以下の見出しを変更しないこと:
 
 - `## 事前準備`
 - `## Session 1 — …` / `## Session 2 — …`（各 Session の直前に `---` 区切りが必要）
