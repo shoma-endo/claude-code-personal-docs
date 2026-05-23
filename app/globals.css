@@ -19,3 +19,108 @@
     letter-spacing: -0.01em;
   }
 }
+
+@media print {
+  /* Preserve background colors of alert callouts and borders */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    margin: 18mm 14mm;
+  }
+
+  html,
+  body {
+    background: white !important;
+  }
+
+  /* Disable the xl 3-column grid: stack content vertically on paper */
+  .xl\:grid {
+    display: block !important;
+  }
+
+  /* Ensure inactive tab panels (hidden on screen) become visible in print */
+  .hidden.print\:block {
+    display: block !important;
+  }
+
+  /* Article fills the page */
+  article {
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  /* Remove sticky positioning on tab nav, etc. */
+  .sticky {
+    position: static !important;
+  }
+
+  /* Page break before each session panel (overview is first, no break) */
+  article > section + section {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  /* Avoid orphan headings */
+  h1, h2, h3, h4 {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  /* Code blocks: light background for paper */
+  pre {
+    background: #f8fafc !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    page-break-inside: avoid;
+  }
+  pre code,
+  pre code * {
+    color: #0f172a !important;
+    background: transparent !important;
+  }
+
+  /* Tables: allow wrap on paper (whitespace-nowrap clips content) */
+  table {
+    white-space: normal !important;
+    table-layout: auto !important;
+    width: 100% !important;
+  }
+  .overflow-x-auto {
+    overflow: visible !important;
+  }
+
+  /* Long-running containers (e.g. the 事前準備 orange box) should break across pages */
+  [aria-label="事前準備"] {
+    break-inside: auto;
+  }
+
+  /* Hide the heading anchor "#" marker */
+  h1 span[aria-hidden],
+  h2 span[aria-hidden],
+  h3 span[aria-hidden],
+  h4 span[aria-hidden] {
+    display: none !important;
+  }
+
+  /* Annotate external links with their URL so paper readers can follow them */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #475569;
+    word-break: break-all;
+  }
+  a[href^="http"] svg {
+    display: none !important;
+  }
+
+  /* Internal anchor links: plain on paper */
+  a[href^="#"] {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+}

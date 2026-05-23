@@ -20,8 +20,8 @@ export default async function InternalTrainingPage() {
   const toc = extractToc(content);
 
   return (
-    <motion className="mx-auto w-full max-w-[1560px] px-4 py-8 md:px-8 xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(0,1024px)_18rem] xl:gap-10 2xl:grid-cols-[minmax(0,1fr)_minmax(0,1120px)_20rem]">
-      <motion className="hidden xl:block" aria-hidden="true" />
+    <div className="mx-auto w-full max-w-[1560px] px-4 py-8 md:px-8 xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(0,1024px)_18rem] xl:gap-10 2xl:grid-cols-[minmax(0,1fr)_minmax(0,1120px)_20rem]">
+      <div className="hidden xl:block" aria-hidden="true" />
       <article className="mx-auto min-w-0 max-w-5xl xl:mx-0 xl:max-w-none">
         <p className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
           講師・運営向け（社内）の進行メモです。受講者には{' '}
@@ -30,11 +30,11 @@ export default async function InternalTrainingPage() {
           </Link>
           を共有してください。
         </p>
-        <MarkdownRenderer content={content} />
+        <MarkdownRenderer content={content} checklistScope="internal" />
       </article>
       <aside className="hidden xl:block min-w-0">
         <TocSidebar entries={toc} />
       </aside>
-    </motion>
+    </div>
   );
 }

@@ -4,8 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import type { Components } from 'react-markdown';
-import { useState } from 'react';
-import type { ReactNode } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import type { ChangeEvent, ReactNode } from 'react';
 import { slugify } from '@/lib/markdown';
 import { MermaidDiagram } from '@/components/MermaidDiagram';
 import { remarkAlerts } from '@/lib/remark-alerts';
@@ -46,9 +46,25 @@ function CodeBlock({ children, node }: { children?: ReactNode; node?: Record<str
       <button
         onClick={copy}
         aria-label="コードをコピー"
-        className="absolute top-2 right-2 px-2 py-1 text-xs rounded bg-slate-600 text-slate-300 opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity hover:bg-slate-500"
+        className={`absolute top-2 right-2 inline-flex items-center gap-1 px-2 py-1 text-xs rounded bg-slate-700 text-slate-200 transition-opacity hover:bg-slate-500 print:hidden ${
+          copied ? 'opacity-100' : 'opacity-60 group-hover:opacity-100 focus-visible:opacity-100'
+        }`}
       >
-        {copied ? 'コピー済み ✓' : 'コピー'}
+        {copied ? (
+          <>
+            <svg xmlns="http://www.w3.org/2000/svg" className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            コピー済み
+          </>
+        ) : (
+          <>
+            <svg xmlns="http://www.w3.org/2000/svg" className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            コピー
+          </>
+        )}
       </button>
     </div>
   );
@@ -63,6 +79,63 @@ function textContent(node: ReactNode): string {
     return textContent(props.children as ReactNode);
   }
   return '';
+}
+
+function ChecklistItem({
+  children,
+  scope,
+  initialChecked,
+}: {
+  children: ReactNode;
+  scope: string;
+  initialChecked: boolean;
+}) {
+  const text = textContent(children);
+  const slug = slugify(text);
+  const storageKey = `cc-training:checklist:${scope}:${slug}`;
+
+  const [checked, setChecked] = useState(initialChecked);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored !== null) setChecked(stored === 'true');
+    } catch {
+      // localStorage unavailable (private mode, SSR, etc.)
+    }
+    setHydrated(true);
+  }, [storageKey]);
+
+  function onChange(e: ChangeEvent<HTMLInputElement>) {
+    const next = e.target.checked;
+    setChecked(next);
+    try {
+      localStorage.setItem(storageKey, String(next));
+    } catch {
+      // ignore
+    }
+  }
+
+  return (
+    <li className="list-none">
+      <label className="flex cursor-pointer items-start gap-2">
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+          className="mt-1 size-4 cursor-pointer rounded border-slate-300 accent-orange-600"
+        />
+        <span
+          className={`transition-colors ${
+            hydrated && checked ? 'text-slate-400 line-through' : ''
+          }`}
+        >
+          {children}
+        </span>
+      </label>
+    </li>
+  );
 }
 
 function createHeading(
@@ -83,7 +156,8 @@ function createHeading(
   };
 }
 
-const components: Components = {
+function makeComponents(scope: string): Components {
+  return {
   h1: createHeading('h1', 'text-3xl font-bold mb-6 text-slate-900'),
   h2: createHeading(
     'h2',
@@ -105,37 +179,27 @@ const components: Components = {
     </ol>
   ),
   li: ({ children, ...props }) => {
-    const node = props.node;
-    const checked = node?.properties?.className
-      ? undefined
-      : (props as Record<string, unknown>).checked;
-    if (typeof checked === 'boolean') {
+    // Detect GFM task list items by inspecting the hast tree.
+    // remark-gfm emits <li> containing <input type="checkbox"> as the first child;
+    // react-markdown doesn't expose `checked` on the <li> props directly.
+    const hastChildren = (props.node as { children?: Array<{ tagName?: string; properties?: { type?: string; checked?: boolean } }> } | undefined)?.children;
+    const firstChild = hastChildren?.[0];
+    const isTaskList =
+      firstChild?.tagName === 'input' && firstChild?.properties?.type === 'checkbox';
+
+    if (isTaskList) {
+      const initialChecked = !!firstChild?.properties?.checked;
       return (
-        <li className="list-none flex items-start gap-2">
-          <input
-            type="checkbox"
-            checked={checked}
-            readOnly
-            className="mt-1 size-4 rounded border-slate-300"
-          />
-          <span>{children}</span>
-        </li>
+        <ChecklistItem scope={scope} initialChecked={initialChecked}>
+          {children}
+        </ChecklistItem>
       );
     }
     return <li>{children}</li>;
   },
-  input: ({ type, checked, ...props }) => {
-    if (type === 'checkbox') {
-      return (
-        <input
-          type="checkbox"
-          checked={checked}
-          readOnly
-          className="size-4 rounded border-slate-300 mr-2"
-          {...props}
-        />
-      );
-    }
+  input: ({ type, ...props }) => {
+    // Task list checkboxes are rendered interactively by ChecklistItem; suppress the raw <input>.
+    if (type === 'checkbox') return null;
     return <input type={type} {...props} />;
   },
   pre: ({ children, node }) => {
@@ -240,9 +304,17 @@ const components: Components = {
       className="max-w-full rounded-lg my-4 shadow"
     />
   ),
-};
+  };
+}
 
-export function MarkdownRenderer({ content }: { content: string }) {
+export function MarkdownRenderer({
+  content,
+  checklistScope = 'default',
+}: {
+  content: string;
+  checklistScope?: string;
+}) {
+  const components = useMemo(() => makeComponents(checklistScope), [checklistScope]);
   return (
     <ReactMarkdown remarkPlugins={[remarkGfm, remarkAlerts]} rehypePlugins={[rehypeHighlight]} components={components}>
       {content}

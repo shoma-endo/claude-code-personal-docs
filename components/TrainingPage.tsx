@@ -57,12 +57,6 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
-  const sessionContent: Record<'session1' | 'session2' | 'session3', string> = {
-    session1,
-    session2,
-    session3,
-  };
-
   const minLevel = Math.min(...tocByTab[activeTab].map((e) => e.level));
 
   return (
@@ -71,7 +65,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
 
       <article className="mx-auto min-w-0 max-w-5xl xl:mx-0 xl:max-w-none">
         <nav
-          className="sticky top-0 z-10 mb-8 flex gap-0 border-b border-orange-200 bg-orange-50"
+          className="sticky top-0 z-10 mb-8 flex gap-0 border-b border-orange-200 bg-orange-50 print:hidden"
           role="tablist"
           aria-label="1Day 研修セッション"
         >
@@ -83,7 +77,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
                 id={`tab-${tab.id}`}
                 role="tab"
                 aria-selected={isActive}
-                aria-controls="tab-panel"
+                aria-controls={`panel-${tab.id}`}
                 onClick={() => switchTab(tab.id)}
                 className={`-mb-px border-b-2 px-5 py-3 text-sm font-medium transition-colors ${
                   isActive
@@ -97,30 +91,51 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
           })}
         </nav>
 
-        <div
-          id="tab-panel"
+        <section
+          id="panel-overview"
           role="tabpanel"
-          aria-labelledby={`tab-${activeTab}`}
+          aria-labelledby="tab-overview"
           tabIndex={0}
-          className="outline-none"
+          className={activeTab === 'overview' ? 'outline-none' : 'hidden print:block'}
         >
-          {activeTab === 'overview' ? (
-            <>
-              <MarkdownRenderer content={intro} />
-              <div
-                className="mb-6 rounded-r-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
-                aria-label="事前準備"
-              >
-                <MarkdownRenderer content={prep} />
-              </div>
-            </>
-          ) : (
-            <MarkdownRenderer content={sessionContent[activeTab as 'session1' | 'session2' | 'session3']} />
-          )}
-        </div>
+          <MarkdownRenderer content={intro} checklistScope="overview" />
+          <div
+            className="mb-6 rounded-r-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
+            aria-label="事前準備"
+          >
+            <MarkdownRenderer content={prep} checklistScope="overview" />
+          </div>
+        </section>
+        <section
+          id="panel-session1"
+          role="tabpanel"
+          aria-labelledby="tab-session1"
+          tabIndex={0}
+          className={activeTab === 'session1' ? 'outline-none' : 'hidden print:block'}
+        >
+          <MarkdownRenderer content={session1} checklistScope="session1" />
+        </section>
+        <section
+          id="panel-session2"
+          role="tabpanel"
+          aria-labelledby="tab-session2"
+          tabIndex={0}
+          className={activeTab === 'session2' ? 'outline-none' : 'hidden print:block'}
+        >
+          <MarkdownRenderer content={session2} checklistScope="session2" />
+        </section>
+        <section
+          id="panel-session3"
+          role="tabpanel"
+          aria-labelledby="tab-session3"
+          tabIndex={0}
+          className={activeTab === 'session3' ? 'outline-none' : 'hidden print:block'}
+        >
+          <MarkdownRenderer content={session3} checklistScope="session3" />
+        </section>
       </article>
 
-      <aside className="hidden xl:block min-w-0">
+      <aside className="hidden min-w-0 xl:block print:hidden">
         {/* key forces TocSidebar to remount on tab change, resetting scroll position and active heading */}
         <TocSidebar key={activeTab} entries={tocByTab[activeTab]} />
       </aside>
@@ -132,7 +147,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
         aria-label="目次を開く"
         aria-expanded={tocOpen}
         aria-controls="mobile-toc-drawer"
-        className="fixed bottom-6 right-6 z-20 flex items-center gap-2 rounded-full bg-orange-700 px-4 py-3 text-sm font-medium text-white shadow-lg xl:hidden"
+        className="fixed bottom-6 right-6 z-20 flex items-center gap-2 rounded-full bg-orange-700 px-4 py-3 text-sm font-medium text-white shadow-lg xl:hidden print:hidden"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h10" />
@@ -142,7 +157,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
 
       {/* Mobile ToC drawer */}
       {tocOpen && (
-        <div className="fixed inset-0 z-30 xl:hidden">
+        <div className="fixed inset-0 z-30 xl:hidden print:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setTocOpen(false)} />
           <div
             ref={drawerRef}
