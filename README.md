@@ -53,6 +53,7 @@ docs/
       sample-data/                     # 講義用ワークスペース（CLAUDE.md 等。受講者はこのフォルダを開く）
 lib/
   markdown.ts           # slugify / extractToc / splitTrainingSections
+  sample-data-zip.ts    # 講義用 sample-data の ZIP 生成（/api/sample-data）
   remark-alerts.ts      # GitHub 風アラート構文を blockquote のクラスへ変換する remark プラグイン
 ```
 
@@ -63,7 +64,7 @@ lib/
 - **`components/MarkdownRenderer.tsx`** — `react-markdown` + `remark-gfm` + `remarkAlerts` + `rehype-highlight` を組み合わせるクライアントコンポーネント。Tailwind prose スタイルはすべてインライン定義（`@tailwindcss/typography` は不使用）。コードブロックにはコピー用ボタンが表示される。`language-mermaid` コードブロックは `MermaidDiagram` に委譲する。
 - **`components/MermaidDiagram.tsx`** — Mermaid 図のレンダラー。テーマは **`neutral`**（ライト系）固定。ダーク系テーマは使用しないこと。
 - **`components/TocSidebar.tsx`** — `IntersectionObserver` でアクティブな見出しをハイライト。`xl` ブレークポイント以上で sticky 表示。
-- **`components/TrainingPage.tsx`** — タブ切り替えとモバイル用ドロワー目次を担うクライアントコンポーネント。`## 事前準備` セクションは概要タブ内で左 blue ボーダー＋ slate 背景のコールアウトに包んで表示する。タブを切り替えると `TocSidebar` は `key` 変更により再マウントされ、スクロール位置とアクティブ見出しがリセットされる。
+- **`components/TrainingPage.tsx`** — タブ切り替えとモバイル用ドロワー目次を担うクライアントコンポーネント。`## 事前準備` セクションは概要タブ内で左 blue ボーダー＋ slate 背景のコールアウトに包んで表示する。事前準備の先頭に **`SampleDataDownload`**（`/api/sample-data` から ZIP 取得）を表示する。
 
 ## コンテンツの編集
 

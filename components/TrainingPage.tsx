@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { SampleDataDownload } from '@/components/SampleDataDownload';
 import { TocSidebar } from '@/components/TocSidebar';
 import type { TocEntry, TrainingSections } from '@/lib/markdown';
 
@@ -103,6 +104,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
             className="mb-6 rounded-r-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
             aria-label="事前準備"
           >
+            <SampleDataDownload />
             <MarkdownRenderer content={prep} checklistScope="overview" />
           </div>
         </section>

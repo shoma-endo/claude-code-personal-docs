@@ -2,11 +2,9 @@
 
 Claude Code 個人向け 1Day 講義の演習用フォルダです。**エディターで開くのはこの `sample-data` フォルダ**（`CLAUDE.md` がルートに見える階層）です。実在の顧客名・個人名・金額は含みません。
 
-## ダウンロード
+## 取得方法
 
-1. [GitHub の sample-data フォルダ](https://github.com/shoma-endo/claude-code-personal-docs/tree/main/docs/training/claude-code-personal/sample-data) を開く
-2. **Code → Download ZIP** で取得するか、配布されたアーカイブを使う
-3. 解凍後、**`sample-data` フォルダ**（`CLAUDE.md` が直下にある階層）をエディターで開く
+講義サイト（**概要 & 事前準備** タブ）の **sample-data.zip をダウンロード** から取得し、解凍してください。
 
 任意で作業フォルダを分ける場合:
 
