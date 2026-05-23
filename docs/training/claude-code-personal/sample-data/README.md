@@ -50,12 +50,12 @@ claude
 sample-data/                    # ← エディターで開くのはここ
 ├── README.md                   # このファイル
 ├── CLAUDE.md                   # Session 1 §10 以降
-├── meeting-memo.txt            # Session 1 §21 用（ダミー）
+├── meeting-memo.txt            # Session 1 §18 用（ダミー）
 ├── .claude/
 │   ├── settings.json           # §12 の設定例
 │   └── skills/
 │       └── meeting-summary/
-│           └── SKILL.md        # §14・§21 の Skill 例
+│           └── SKILL.md        # §14・§18 の Skill 例
 └── examples/                   # Session 1 の模範のみ（2 ファイル）
     ├── about-me.md
     └── meeting-summary.md
@@ -68,9 +68,9 @@ sample-data/                    # ← エディターで開くのはここ
 | Session 1 **§4 以降** | このフォルダ全体 | エディターで開き、同じパスで `claude` を起動 |
 | Session 1 §10〜§12 | `CLAUDE.md`、`.claude/` | 実物を開きながら講義・対話 |
 | Session 1 §14 | `.claude/skills/meeting-summary/` | Skill の中身を読む |
-| Session 1 §17〜20 | ルート | `about-me.md` を作成。模範は `examples/about-me.md` |
-| Session 1 §21 | `meeting-memo.txt` | 要約演習。模範は `examples/meeting-summary.md` |
-| Session 1 §22 | `CLAUDE.md` | 既存ルールに 1 行追記 |
+| Session 1 §17 | ルート | `about-me.md` を作成。模範は `examples/about-me.md` |
+| Session 1 §18 | `meeting-memo.txt` | 要約演習。模範は `examples/meeting-summary.md` |
+| Session 1 §19 | `CLAUDE.md` | 既存ルールに 1 行追記 |
 | Session 2 §7 | （なし） | `manual-secretary/` は Claude に新規作成させる（配布物に含めない） |
 
 ## データの出典
