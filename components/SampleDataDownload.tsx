@@ -6,8 +6,9 @@ export function SampleDataDownload() {
     >
       <p className="mb-1 text-sm font-semibold text-orange-800">講義用 sample-data（ZIP）</p>
       <p className="mb-4 text-sm leading-relaxed text-slate-700">
-        演習用フォルダ一式をこのページから取得できます。解凍すると <code className="rounded bg-orange-100 px-1.5 py-0.5 text-xs">sample-data</code>{' '}
-        フォルダができます。その中をエディターで開いてください（ルートに <code className="rounded bg-orange-100 px-1.5 py-0.5 text-xs">CLAUDE.md</code> と{' '}
+        演習用フォルダ一式です。解凍すると <code className="rounded bg-orange-100 px-1.5 py-0.5 text-xs">sample-data</code> フォルダができます。その中をエディターで開き、ターミナルでも同じ場所で{' '}
+        <code className="rounded bg-orange-100 px-1.5 py-0.5 text-xs">claude</code> を起動してから <strong>§8</strong> 以降に進んでください（ルートに{' '}
+        <code className="rounded bg-orange-100 px-1.5 py-0.5 text-xs">CLAUDE.md</code>・<code className="rounded bg-orange-100 px-1.5 py-0.5 text-xs">about-me.md</code>・
         <code className="rounded bg-orange-100 px-1.5 py-0.5 text-xs">meeting-memo.txt</code> が並んでいれば正しい階層です）。
       </p>
       <a

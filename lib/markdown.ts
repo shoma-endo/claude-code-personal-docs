@@ -8,6 +8,23 @@ export type TrainingSections = {
   session3: string;
 };
 
+/** Session 2 で ZIP ダウンロード UI を差し込む見出し（§7 の後・§8 の前。変更時は TrainingPage の分割と同期） */
+export const SESSION2_SAMPLE_DATA_HEADING = '### 講義用サンプルデータの準備';
+
+export function splitSession2ForSampleDownload(session2: string): {
+  beforeSampleData: string;
+  fromSampleData: string;
+} {
+  const idx = session2.indexOf(SESSION2_SAMPLE_DATA_HEADING);
+  if (idx === -1) {
+    return { beforeSampleData: session2, fromSampleData: '' };
+  }
+  return {
+    beforeSampleData: session2.slice(0, idx).trimEnd(),
+    fromSampleData: session2.slice(idx),
+  };
+}
+
 export function splitTrainingSections(markdown: string): TrainingSections | null {
   const prepStart = markdown.indexOf('## 事前準備');
   const sep = '\n---\n\n';
