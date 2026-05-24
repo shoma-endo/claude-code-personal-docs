@@ -670,13 +670,6 @@ meeting-memo.txt を読んで、決定事項、担当者、次のアクション
 | `/init` | プロジェクトに CLAUDE.md の雛形を自動生成 |
 | `/plan` | Plan モードで計画のみ作成（編集は承認後） |
 
-#### プラグインコマンド（Session 3 で使用）
-
-| コマンド | 動作 |
-|---|---|
-| `/plugin marketplace add <owner/repo>` | マーケットプレイス追加 |
-| `/plugin install <name>@<marketplace>` | プラグイン導入 |
-
 ### Session 2 の復旧手順
 
 インストール・サインインで困ったときは **事前準備 §①** と [インストールのトラブルシューティング（日本語）](https://code.claude.com/docs/ja/troubleshoot-install) を参照してください。
