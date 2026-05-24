@@ -755,16 +755,12 @@ meeting-memo.txt を読んで、決定事項、担当者、次のアクション
 
 ## Session 3 — AI 秘書（cc-secretary）と Lark CLI
 
-> **ゴール** AI 秘書（cc-secretary）を立ち上げ、日常のタスク・メモ管理を行える。続けて [Lark CLI](https://github.com/larksuite/cli) のインストール・設定・基本操作を体験する
-
-> [!NOTE]
-> 本講義では **cc-secretary** プラグインを **AI 秘書** として扱います。インストール手順ではプラグイン名 `cc-secretary` をそのまま使います。
-
 > [!IMPORTANT]
-> Session 3 では **cc-secretary（AI 秘書）を Lark CLI より先に** 完了してください。
-
-> [!NOTE]
-> Lark CLI 本体のインストールは **§9** で行います（cc-secretary より先に入れないでください）。
+> **ゴール** AI 秘書（cc-secretary）を立ち上げ、日常のタスク・メモ管理を行える。続けて [Lark CLI](https://github.com/larksuite/cli) のインストール・設定・基本操作を体験する。
+>
+> - 本講義では **cc-secretary** プラグインを **AI 秘書** として扱います。インストール手順ではプラグイン名 `cc-secretary` をそのまま使います。
+> - Session 3 では **cc-secretary（AI 秘書）を Lark CLI より先に** 完了してください。
+> - Lark CLI 本体のインストールは **§9** で行います（cc-secretary より先に入れないでください）。
 
 ### 1. AI 秘書とは
 
