@@ -55,16 +55,18 @@ lib/
   markdown.ts           # slugify / extractToc / splitTrainingSections
   sample-data-zip.ts    # 講義用 sample-data の ZIP 生成（/api/sample-data）
   remark-alerts.ts      # GitHub 風アラート構文を blockquote のクラスへ変換する remark プラグイン
+  remark-directives.ts  # :::name 記法で React コンポーネントを差し込む remark プラグイン
 ```
 
 ### 主要ファイルの注意点
 
 - **`lib/markdown.ts`** — `slugify`（Unicode・日本語対応）、`extractToc`、`splitTrainingSections`。`MarkdownRenderer` と `TocSidebar` の両方が `slugify` を呼ぶため、見出し ID は必ず同期させること。`splitTrainingSections` は `## 事前準備` と `## Session 1 — / 2 — / 3 —` の見出し文字列に依存している。
 - **`lib/remark-alerts.ts`** — `> [!NOTE]` / `> [!TIP]` / `> [!IMPORTANT]` / `> [!WARNING]` / `> [!CAUTION]` の GitHub 風アラート構文を検出し、対応する blockquote に `alert-*` クラスを付与する remark プラグイン。実際の見た目は `MarkdownRenderer` の `blockquote` カスタマイズで定義する。
-- **`components/MarkdownRenderer.tsx`** — `react-markdown` + `remark-gfm` + `remarkAlerts` + `rehype-highlight` を組み合わせるクライアントコンポーネント。Tailwind prose スタイルはすべてインライン定義（`@tailwindcss/typography` は不使用）。コードブロックにはコピー用ボタンが表示される。`language-mermaid` コードブロックは `MermaidDiagram` に委譲する。
+- **`lib/remark-directives.ts`** — 単独段落 `:::name` を検出し、paragraph に `directive-name` クラスを付与する remark プラグイン。`MarkdownRenderer` の `p` ハンドラが `DIRECTIVE_COMPONENTS` マップを参照し、対応する React コンポーネントへ置き換える。現在は `:::sample-data-download` → `SampleDataDownload` のみ。新規 directive を足す際はマップに登録する。名前は `[a-z][a-z0-9-]*` のみ。
+- **`components/MarkdownRenderer.tsx`** — `react-markdown` + `remark-gfm` + `remarkAlerts` + `remarkDirectives` + `rehype-highlight` を組み合わせるクライアントコンポーネント。Tailwind prose スタイルはすべてインライン定義（`@tailwindcss/typography` は不使用）。コードブロックにはコピー用ボタンが表示される。`language-mermaid` コードブロックは `MermaidDiagram` に委譲する。
 - **`components/MermaidDiagram.tsx`** — Mermaid 図のレンダラー。テーマは **`neutral`**（ライト系）固定。ダーク系テーマは使用しないこと。
 - **`components/TocSidebar.tsx`** — `IntersectionObserver` でアクティブな見出しをハイライト。`xl` ブレークポイント以上で sticky 表示。
-- **`components/TrainingPage.tsx`** — タブ切り替えとモバイル用ドロワー目次を担うクライアントコンポーネント。`## 事前準備` セクションは概要タブ内で左 blue ボーダー＋ slate 背景のコールアウトに包んで表示する。**Session 2** の **§7 直後**（`### 講義用サンプルデータの準備`）に **`SampleDataDownload`**（`/api/sample-data` から ZIP 取得）を差し込む。§8 以降は ZIP 取得後のみ進む想定。
+- **`components/TrainingPage.tsx`** — タブ切り替えとモバイル用ドロワー目次を担うクライアントコンポーネント。`## 事前準備` セクションは概要タブ内で左 blue ボーダー＋ slate 背景のコールアウトに包んで表示する。`SampleDataDownload`（`/api/sample-data` から ZIP 取得）は Markdown 本文中の `:::sample-data-download` directive で差し込まれる（`lib/remark-directives.ts`）。
 
 ## コンテンツの編集
 

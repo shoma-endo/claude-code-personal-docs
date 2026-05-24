@@ -8,7 +8,13 @@ import { useEffect, useMemo, useState } from 'react';
 import type { ChangeEvent, ReactNode } from 'react';
 import { slugify } from '@/lib/markdown';
 import { MermaidDiagram } from '@/components/MermaidDiagram';
+import { SampleDataDownload } from '@/components/SampleDataDownload';
 import { remarkAlerts } from '@/lib/remark-alerts';
+import { remarkDirectives } from '@/lib/remark-directives';
+
+const DIRECTIVE_COMPONENTS: Record<string, () => ReactNode> = {
+  'sample-data-download': () => <SampleDataDownload />,
+};
 
 type AlertType = 'NOTE' | 'TIP' | 'IMPORTANT' | 'WARNING' | 'CAUTION';
 
@@ -165,9 +171,17 @@ function makeComponents(scope: string): Components {
   ),
   h3: createHeading('h3', 'text-xl font-medium mb-3 mt-6 text-slate-700'),
   h4: createHeading('h4', 'text-lg font-medium mb-2 mt-5 text-slate-700'),
-  p: ({ children }) => (
-    <p className="mb-4 text-slate-600 leading-relaxed">{children}</p>
-  ),
+  p: ({ children, node }) => {
+    const classNames = node?.properties?.className;
+    const classList = Array.isArray(classNames) ? classNames.map(String) : [];
+    const directiveClass = classList.find((c) => c.startsWith('directive-'));
+    if (directiveClass) {
+      const name = directiveClass.slice('directive-'.length);
+      const Component = DIRECTIVE_COMPONENTS[name];
+      if (Component) return <Component />;
+    }
+    return <p className="mb-4 text-slate-600 leading-relaxed">{children}</p>;
+  },
   ul: ({ children }) => (
     <ul className="list-disc list-inside mb-4 space-y-1.5 text-slate-600">
       {children}
@@ -316,7 +330,7 @@ export function MarkdownRenderer({
 }) {
   const components = useMemo(() => makeComponents(checklistScope), [checklistScope]);
   return (
-    <ReactMarkdown remarkPlugins={[remarkGfm, remarkAlerts]} rehypePlugins={[rehypeHighlight]} components={components}>
+    <ReactMarkdown remarkPlugins={[remarkGfm, remarkAlerts, remarkDirectives]} rehypePlugins={[rehypeHighlight]} components={components}>
       {content}
     </ReactMarkdown>
   );
