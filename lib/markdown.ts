@@ -48,7 +48,7 @@ export function extractToc(markdown: string): TocEntry[] {
     }
     if (inCodeBlock) continue;
 
-    const match = line.match(/^(#{1,4})\s+(.+)$/);
+    const match = line.match(/^(#{1,3})\s+(.+)$/);
     if (match) {
       const level = match[1].length;
       const text = match[2].trim();
