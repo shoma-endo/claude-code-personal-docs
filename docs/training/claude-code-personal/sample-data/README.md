@@ -6,14 +6,6 @@ Claude Code 個人向け 1Day 講義の演習用フォルダです。**エディ
 
 講義サイト（**Session 2** の **§7 のあと** — 講義用サンプルデータの準備）の **ダウンロードボタン** から **sample-data** を取得してください（圧縮ファイルの場合は展開する）。**§8 より前に**完了してください。
 
-任意で作業フォルダを分ける場合:
-
-```bash
-cp -r sample-data ~/claude-code-personal
-cd ~/claude-code-personal
-claude
-```
-
 ## エディターで開く
 
 1. **`sample-data` フォルダ** を VS Code / Cursor / Antigravity IDE で「フォルダを開く」
