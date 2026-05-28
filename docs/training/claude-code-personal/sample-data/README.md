@@ -28,10 +28,10 @@ sample-data/
 ├── about-me.md                 # Session 2 §14 用（差し替え演習）
 ├── meeting-memo.txt            # Session 2 §15 用（ダミー）
 ├── .claude/
-│   ├── settings.json           # §10 の設定例
+│   ├── settings.json           # §8 の設定例
 │   └── skills/
 │       └── meeting-summary/
-│           └── SKILL.md        # §12・§15 の Skill 例
+│           └── SKILL.md        # §11・§15 の Skill 例
 └── examples/                   # 演習後の模範（2 ファイル）
     ├── about-me.md
     └── meeting-summary.md
@@ -41,9 +41,9 @@ sample-data/
 
 | セッション | 対象 | 使い方 |
 |---|---|---|
-| Session 2 §8〜§16 | このフォルダ全体 | §7 のあとで sample-data 取得後、同じパスで `claude` を起動 |
-| Session 2 §8〜§10 | `CLAUDE.md`、`.claude/` | 実物を開きながら学ぶ |
-| Session 2 §12 | `.claude/skills/meeting-summary/` | Skill の中身を読む |
+| Session 2 §8〜§17 | このフォルダ全体 | §7 のあとで sample-data 取得後、同じパスで `claude` を起動 |
+| Session 2 §8〜§11 | `CLAUDE.md`、`.claude/` | 実物を開きながら学ぶ |
+| Session 2 §11 | `.claude/skills/meeting-summary/` | Skill の中身を読む |
 | Session 2 §14 | ルート `about-me.md` | 同梱ファイルの「今取り組んでいること」を差し替え。模範は `examples/about-me.md` |
 | Session 2 §15 | `meeting-memo.txt` | 要約演習。模範は `examples/meeting-summary.md` |
 | Session 2 §16 | `CLAUDE.md` | 既存ルールに 1 行追記 |
