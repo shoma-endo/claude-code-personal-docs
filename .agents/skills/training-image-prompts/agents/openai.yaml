@@ -1,0 +1,4 @@
+interface:
+  display_name: "Training Image Prompts"
+  short_description: "研修資料向け画像プロンプト設計"
+  default_prompt: "Use $training-image-prompts to create ChatGPT Image 2 prompts for visuals to insert into training materials."
