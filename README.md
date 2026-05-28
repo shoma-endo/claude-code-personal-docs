@@ -41,11 +41,16 @@ app/
   layout.tsx            # グローバルレイアウト・フォント設定
   globals.css           # Tailwind v4 のエントリ
   icon.svg              # ファビコン
+  internal/
+    page.tsx            # 講師向けページ（/internal、noindex）
+  api/
+    sample-data/route.ts # 講義用 sample-data の ZIP を返す API
 components/
   TrainingPage.tsx      # タブ式のクライアントコンポーネント
   MarkdownRenderer.tsx  # Markdown → HTML クライアントコンポーネント
   TocSidebar.tsx        # 目次サイドバー（IntersectionObserver）
   MermaidDiagram.tsx    # Mermaid 図のレンダラー
+  SampleDataDownload.tsx # /api/sample-data から ZIP を取得するボタン
 docs/
   training/
     claude-code-personal/
