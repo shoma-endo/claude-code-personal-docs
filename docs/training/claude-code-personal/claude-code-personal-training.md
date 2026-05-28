@@ -795,7 +795,7 @@ AI 秘書からヒアリングが始まります。回答例
 - `reviews/`
 - タスクやメモの保存先
 
-続けて、CLAUDE.md に業務ルールを追記します（Session 2 の **sample-data** で編集した `CLAUDE.md` をコピーして使っても、新規に作っても構いません）。
+続けて、業務ルールを追記します。書く場所は **作業フォルダ直下の `CLAUDE.md`**（`.secretary/` と同じ階層）です。Claude Code は起動時にこの `CLAUDE.md` を自動で読み込むので、`/secretary` を呼び出したときにもルールが反映されます。Session 2 の **sample-data** で編集した `CLAUDE.md` をコピーして使っても、新規に作っても構いません。
 
 ```markdown
 # AI 秘書ルール
@@ -871,7 +871,10 @@ Claude Code から Lark を操作するには、公式リポジトリ付属の *
 npx skills add larksuite/cli -y -g
 ```
 
-`-g` はグローバル配置です。講義用プロジェクトだけに置く場合は `-g` を外し、プロジェクト直下で実行してください。
+> [!NOTE]
+> `skills` は Claude Code の **Skill 機構**（Session 2 で触れた、Claude に追加能力を持たせる仕組み）を扱う公式 CLI です。`npx skills ...` で都度実行できるため事前インストールは不要で、ここでは GitHub リポジトリ `larksuite/cli` が同梱する Skill 群（`lark-calendar`、`lark-doc` など 26 種）を取得しています。cc-secretary が `/plugin` で配布されるのに対し、Lark CLI の Skill はこの `skills add` で配布される、と覚えてください。
+
+`-g` はグローバル配置（どのプロジェクトからも参照可）です。講義用プロジェクトだけに置く場合は `-g` を外し、プロジェクト直下で実行してください。
 
 #### インストール確認
 
@@ -887,13 +890,16 @@ lark-cli --version
 
 #### 10-1. アプリ認証情報（初回のみ）
 
-対話形式で Lark 開発者アプリの設定を行います。
+> [!IMPORTANT]
+> このステップを始める前に、**Lark Developer Console**（[open.larksuite.com](https://open.larksuite.com/) または [open.feishu.cn](https://open.feishu.cn/)）で **自分用の開発者アプリを 1 つ作成** しておいてください。`config init` 自体はアプリを作成してくれません。アプリ作成後、Console 画面に表示される `App ID` と `App Secret` を控えておきます（後で貼り付けます）。
+
+対話形式で Lark 開発者アプリの認証情報を CLI に登録します。
 
 ```bash
 lark-cli config init
 ```
 
-ブラウザが開き、ガイドに従ってアプリを作成・認証します。完了すると `app_id` / `app_secret` がローカルに保存されます。
+プロンプトに従い、上で控えた `App ID` / `App Secret` を入力します。続けてブラウザが開き、アプリの認証が走ります。完了すると `app_id` / `app_secret` がローカルに保存されます。
 
 > [!NOTE]
 > Claude Code に設定を任せる場合は、バックグラウンドで `lark-cli config init --new` を実行し、表示された **認証 URL をそのまま** ブラウザで開いてもらう運用も可能です。URL は改変せずコピーしてください。
