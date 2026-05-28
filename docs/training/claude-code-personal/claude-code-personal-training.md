@@ -14,6 +14,8 @@
 
 ## 1Day カリキュラム全体像
 
+![Claude Code × Lark リアル作業会の1Dayタイムテーブル](/assets/images/training/session1/one-day-timetable.png)
+
 | ブロック | タイトル | 到達目標 |
 |---|---|---|
 | Session 1 | AIエージェントとは？従来のAIとの違い | AI エージェントの考え方と、チャット型 AI との違いを理解する |
