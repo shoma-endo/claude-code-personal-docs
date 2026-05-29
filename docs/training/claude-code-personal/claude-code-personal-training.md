@@ -569,7 +569,6 @@ Claude Code  ←→  MCP サーバー  ←→  外部ツール・サービス
 | ドキュメント | Notion MCP | ページの検索・作成・更新 |
 | クラウドストレージ | Google Drive MCP | ファイルの検索・読み取り |
 | Web 検索 | Brave Search MCP | 最新情報の検索・要約 |
-| ファイル操作 | Filesystem MCP | ローカルファイルの読み書き（権限制限付き） |
 
 Anthropic 公式・コミュニティ製のサーバーがオープンソースで公開されており、自作も可能です。
 
