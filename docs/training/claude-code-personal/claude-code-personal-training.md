@@ -549,27 +549,27 @@ meeting-summary という Skill の SKILL.md を読んで、
 
 ### 12. MCP（Model Context Protocol）
 
-**MCP（Model Context Protocol）** は、Claude Code と外部ツール・サービスをつなぐ標準プロトコルです。通常の Claude Code は手元のファイルやターミナルを操作できますが、MCP サーバーを追加することで、GitHub・Slack・データベースなど外部サービスの情報取得や操作もできるようになります。
+**MCP（Model Context Protocol）** は、Claude Code と外部ツール・サービスをつなぐ標準プロトコルです。通常の Claude Code は手元のファイルやターミナルを操作できますが、MCP サーバーを追加することで、Slack・カレンダー・Google Drive など外部サービスの情報取得や操作もできるようになります。
 
 #### 仕組みのイメージ
 
 ```
 Claude Code  ←→  MCP サーバー  ←→  外部ツール・サービス
-（AI 本体）        （通訳・ブリッジ）    （GitHub / Slack / DB など）
+（AI 本体）        （通訳・ブリッジ）    （Slack / カレンダー / Google Drive など）
 ```
 
-「GitHub の Issue を見て」と指示したとき、MCP サーバーが GitHub API を叩いて結果を返します。Claude Code 側は API の仕様を知らなくてよく、MCP サーバーがすべて取り回します。
+「Slack の #連絡 チャンネルを見て」と指示したとき、MCP サーバーが Slack API を叩いて結果を返します。Claude Code 側は API の仕様を知らなくてよく、MCP サーバーがすべて取り回します。
 
 #### 代表的な MCP サーバーの例
 
 | カテゴリ | サーバー例 | できること |
 |---|---|---|
-| バージョン管理 | GitHub MCP | Issue・PR の参照・作成、コードレビュー |
 | コミュニケーション | Slack MCP | チャンネル読み取り、メッセージ送信 |
-| ファイル操作 | Filesystem MCP | ローカルファイルの読み書き（権限制限付き） |
-| Web 検索 | Brave Search MCP | 最新情報の検索・要約 |
-| データベース | PostgreSQL MCP | SQL クエリの実行・結果取得 |
 | カレンダー | Google Calendar MCP | 予定の参照・作成 |
+| ドキュメント | Notion MCP | ページの検索・作成・更新 |
+| クラウドストレージ | Google Drive MCP | ファイルの検索・読み取り |
+| Web 検索 | Brave Search MCP | 最新情報の検索・要約 |
+| ファイル操作 | Filesystem MCP | ローカルファイルの読み書き（権限制限付き） |
 
 Anthropic 公式・コミュニティ製のサーバーがオープンソースで公開されており、自作も可能です。
 
