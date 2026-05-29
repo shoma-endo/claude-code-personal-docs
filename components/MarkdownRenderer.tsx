@@ -25,11 +25,11 @@ const ALERT_CONFIG: Record<AlertType, {
   bgClass: string;
   labelClass: string;
 }> = {
-  NOTE:      { label: '補足',   icon: 'ℹ️',  borderClass: 'border-slate-400',   bgClass: 'bg-slate-50',   labelClass: 'text-slate-600' },
-  TIP:       { label: 'ヒント', icon: '💡',  borderClass: 'border-emerald-400', bgClass: 'bg-emerald-50', labelClass: 'text-emerald-700' },
-  IMPORTANT: { label: '重要',   icon: '❗',  borderClass: 'border-violet-500',  bgClass: 'bg-violet-50',  labelClass: 'text-violet-700' },
-  WARNING:   { label: '注意',   icon: '⚠️',  borderClass: 'border-amber-400',   bgClass: 'bg-amber-50',   labelClass: 'text-amber-700' },
-  CAUTION:   { label: '警告',   icon: '🚫',  borderClass: 'border-red-400',     bgClass: 'bg-red-50',     labelClass: 'text-red-700' },
+  NOTE:      { label: '補足',   icon: 'ℹ️',  borderClass: 'border-slate-400', bgClass: 'bg-slate-50', labelClass: 'text-slate-600' },
+  TIP:       { label: 'ヒント', icon: '💡',  borderClass: 'border-slate-400', bgClass: 'bg-slate-50', labelClass: 'text-slate-600' },
+  IMPORTANT: { label: '重要',   icon: '❗',  borderClass: 'border-amber-400', bgClass: 'bg-amber-50', labelClass: 'text-amber-700' },
+  WARNING:   { label: '注意',   icon: '⚠️',  borderClass: 'border-amber-400', bgClass: 'bg-amber-50', labelClass: 'text-amber-700' },
+  CAUTION:   { label: '警告',   icon: '🚫',  borderClass: 'border-red-400',   bgClass: 'bg-red-50',   labelClass: 'text-red-700' },
 };
 
 function CodeBlock({ children, node }: { children?: ReactNode; node?: Record<string, unknown> }) {
@@ -130,7 +130,7 @@ function ChecklistItem({
           type="checkbox"
           checked={checked}
           onChange={onChange}
-          className="mt-1 size-4 cursor-pointer rounded border-slate-300 accent-orange-600"
+          className="mt-1 size-4 cursor-pointer rounded border-slate-300 accent-slate-600"
         />
         <span
           className={`transition-colors ${
@@ -266,7 +266,7 @@ function makeComponents(scope: string): Components {
     return (
       <a
         href={href}
-        className="text-orange-700 hover:text-orange-800 underline inline-flex items-center gap-0.5"
+        className="text-slate-700 hover:text-slate-900 underline inline-flex items-center gap-0.5"
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
       >
