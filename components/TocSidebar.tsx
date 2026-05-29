@@ -45,7 +45,7 @@ export function TocSidebar({ entries }: { entries: TocEntry[] }) {
                 href={`#${entry.slug}`}
                 className={`block py-1 leading-snug transition-colors ${
                   isActive
-                    ? 'text-orange-700 font-medium border-l-2 border-orange-500 -ml-px pl-[11px]'
+                    ? 'text-slate-900 font-semibold border-l-2 border-slate-600 -ml-px pl-[11px]'
                     : 'text-slate-600 hover:text-slate-800'
                 }`}
               >

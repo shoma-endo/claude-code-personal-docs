@@ -100,7 +100,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
         >
           <MarkdownRenderer content={intro} checklistScope="overview" />
           <div
-            className="mb-6 rounded-r-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
+            className="mb-6 rounded-r-lg border border-slate-200 border-l-4 border-l-slate-400 bg-slate-50 px-5 py-6 shadow-sm md:px-8 md:py-8 [&>h2:first-of-type]:mt-2"
             aria-label="事前準備"
           >
             <MarkdownRenderer content={prep} checklistScope="overview" />
@@ -166,7 +166,7 @@ export function TrainingPage({ intro, prep, session1, session2, session3, tocByT
             aria-modal="true"
             aria-label="目次"
             tabIndex={-1}
-            className="absolute bottom-0 right-0 top-0 w-72 max-w-[calc(100vw-2rem)] overflow-y-auto bg-orange-50 p-6 shadow-xl outline-none"
+            className="absolute bottom-0 right-0 top-0 w-72 max-w-[calc(100vw-2rem)] overflow-y-auto bg-white p-6 shadow-xl outline-none"
           >
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500">目次</h2>
