@@ -742,9 +742,13 @@ meeting-memo.txt を読んで、決定事項、担当者、次のアクション
 
 Session 2 で学んだファイル操作・CLAUDE.md・Skills の知識を前提に、「自分専用の秘書環境」を立ち上げます。
 
+![Claude Code に cc-secretary を入れると、日々の作業が .secretary フォルダにタスク、メモ、振り返りとして整理される流れ](/assets/images/training/session3/ai-secretary-workflow.png)
+
 #### 素の Claude Code との違い
 
 素の Claude Code でも「メモを `.md` に書く」「タスクを管理する」ことは可能です。ただし、その場合は **フォルダ構成・命名規則・運用ルールをすべて自分で設計し、CLAUDE.md に書き起こす** 必要があります。cc-secretary は、その「秘書としての型」をプリセットで用意してくれるプラグインです。
+
+![素の Claude Code はフォルダ構成や運用ルールを自分で設計する必要があり、cc-secretary は .secretary と /secretary で秘書の型を用意する比較](/assets/images/training/session3/plain-vs-cc-secretary.png)
 
 | 観点 | 素の Claude Code | cc-secretary を入れた AI 秘書 |
 |---|---|---|
@@ -918,6 +922,8 @@ rules.md には秘書運用ルールを書いてください。
 > - 機密情報は Session 2 と同様、入力前に匿名化してください。
 
 [Lark CLI](https://github.com/larksuite/cli)（`lark-cli`）は、Lark / 飛書の **公式 CLI ツール** です。人間がターミナルから直接使うだけでなく、**Claude Code などの AI Agent** が Lark の各種 API を安全に呼び出すために設計されています。
+
+![Claude Code が自然言語の依頼を受け、Lark CLI を実行して Lark クラウド上のカレンダー、タスク、Docs、Base などの業務データを扱う流れ](/assets/images/training/session3/lark-cli-cloud-flow.svg)
 
 | 特徴 | 内容 |
 |---|---|
