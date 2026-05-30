@@ -291,13 +291,15 @@ Claude Code はお手元の PC 上で動作しますが、入力した文章と 
 
 Claude Code がファイル編集やコマンド実行を行う時、許可を求めることがあります。
 
+![Claude Code の許可ダイアログ。Yes / Yes allow all edits during this session / No の 3 択が表示される](/assets/images/training/session2/permission-dialog.png)
+
 | 選択肢 | 意味 | この段階での目安 |
 |---|---|---|
-| `Allow once` | 今回だけ許可 | 基本はこれ |
-| `Always allow` | 今後も同じ操作を許可 | 頻出操作だけ慣れてから検討 |
-| `Deny` | 拒否 | 意図しない操作なら選ぶ |
+| `Yes` | 今回だけ許可 | 基本はこれ |
+| `Yes, allow all edits during this session` | セッション中すべての編集を許可 | 頻出操作だけ慣れてから検討 |
+| `No` | 拒否 | 意図しない操作なら選ぶ |
 
-初回は、基本的に `Allow once` を選びます。意味が分からない操作が出たら、許可せず質問してください。
+初回は、基本的に `Yes` を選びます。意味が分からない操作が出たら、許可せず質問してください。
 
 ### 4. 止め方を覚える
 
