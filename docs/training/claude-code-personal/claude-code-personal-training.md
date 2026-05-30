@@ -97,15 +97,7 @@
 
 #### 本講義での役割分担
 
-```mermaid
-flowchart LR
-  E["エディター<br/>ファイルを見る・確認する"]
-  T["ターミナル<br/>claude と入力して指示する"]
-  C["Claude Code<br/>ファイル作成・編集・コマンド実行"]
-  E <-->|同じフォルダ| T
-  T --> C
-  C --> E
-```
+![エディター、ターミナル、Claude Code が同じフォルダを使い、ターミナルから指示して Claude Code がファイル作成や編集を行う役割分担](/assets/images/training/prep/editor-terminal-claude-roles.png)
 
 | 道具 | あなたがすること | Claude Code との関係 |
 |---|---|---|
