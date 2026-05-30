@@ -558,10 +558,7 @@ meeting-summary という Skill の SKILL.md を読んで、
 
 #### 仕組みのイメージ
 
-```
-Claude Code  ←→  MCP サーバー  ←→  外部ツール・サービス
-（AI 本体）        （通訳・ブリッジ）    （Slack / カレンダー / Google Drive など）
-```
+![Claude Code と外部ツールの間に MCP サーバーが入り、通訳・ブリッジとしてチャット、カレンダー、ファイルなどのサービスへつなぐ流れ](/assets/images/training/session2/mcp-bridge-flow.png)
 
 「Slack の #連絡 チャンネルを見て」と指示したとき、MCP サーバーが Slack API を叩いて結果を返します。Claude Code 側は API の仕様を知らなくてよく、MCP サーバーがすべて取り回します。
 
