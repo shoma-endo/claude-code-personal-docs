@@ -4,7 +4,7 @@ Claude Code 個人向け 1Day 講義の演習用フォルダです。**エディ
 
 ## 取得方法
 
-講義サイト（**Session 2** の **§7 のあと** — 講義用サンプルデータの準備）の **ダウンロードボタン** から **sample-data** を取得してください（圧縮ファイルの場合は展開する）。**§8 より前に**完了してください。
+講義サイト（**Session 2** の **§5 のあと** — 講義用サンプルデータの準備）の **ダウンロードボタン** から **sample-data** を取得してください（圧縮ファイルの場合は展開する）。**§6 より前に**完了してください。
 
 ## エディターで開く
 
@@ -24,7 +24,7 @@ claude
 ```text
 sample-data/
 ├── README.md
-├── CLAUDE.md                   # Session 2 §8 以降
+├── CLAUDE.md                   # Session 2 §6 以降
 ├── about-me.md                 # Session 2 §14 用（差し替え演習）
 ├── meeting-memo.txt            # Session 2 §15 用（ダミー）
 ├── .claude/
@@ -37,16 +37,36 @@ sample-data/
     └── meeting-summary.md
 ```
 
-## 講義での使い方
+## ダウンロード後にやること（はじめての方向け・順番）
 
-| セッション | 対象 | 使い方 |
-|---|---|---|
-| Session 2 §8〜§17 | このフォルダ全体 | §7 のあとで sample-data 取得後、同じパスで `claude` を起動 |
-| Session 2 §8〜§11 | `CLAUDE.md`、`.claude/` | 実物を開きながら学ぶ |
-| Session 2 §11 | `.claude/skills/meeting-summary/` | Skill の中身を読む |
-| Session 2 §14 | ルート `about-me.md` | 同梱ファイルの「今取り組んでいること」を差し替え。模範は `examples/about-me.md` |
-| Session 2 §15 | `meeting-memo.txt` | 要約演習。模範は `examples/meeting-summary.md` |
-| Session 2 §16 | `CLAUDE.md` | 既存ルールに 1 行追記 |
+このフォルダを取得したら、上から順に進めれば一通り体験できます。各ステップは講義サイト（受講者ページ）の節と対応しています。
+
+### ステップ0 — 準備
+
+1. この `sample-data` フォルダをエディターで「フォルダを開く」
+2. 内蔵ターミナル（`` Ctrl + ` ``）で `claude` を起動する
+
+### ステップ1〜 — 演習の流れ
+
+| 順 | やること | 使うファイル | 受講者ページ |
+|---|---|---|---|
+| 1 | プロジェクトルールを Claude に要約させる | `CLAUDE.md` | §6 |
+| 2 | 設定ファイルの置き場所を知る（中身はほぼ空でOK） | `.claude/settings.json` | §8 |
+| 3 | Skill（定型手順）の中身を読む | `.claude/skills/meeting-summary/SKILL.md` | §11 |
+| 4 | 自己紹介を自分用に差し替える | `about-me.md`（模範: `examples/about-me.md`） | §14 |
+| 5 | 議事メモを要約して保存する | `meeting-memo.txt` → `meeting-summary.md`（模範: `examples/meeting-summary.md`） | §15 |
+| 6 | ルールを 1 行追記する | `CLAUDE.md` | §16 |
+
+> [!TIP]
+> 詳しい依頼文（プロンプト）や完了の目安は、受講者ページの各節に載っています。このフォルダは「手を動かす場所」、受講者ページは「進め方の説明」と覚えてください。
+
+## このサンプルでできること（例）
+
+- Claude にファイルを**読ませて要約**させる（議事メモ → サマリー）
+- 既存ファイルを**目的に合わせて編集**させる（自己紹介の差し替え）
+- **プロジェクトルール（`CLAUDE.md`）**で Claude の応答ルールを決める
+- **Skill** で定型作業（議事録整理）を手順化する
+- `examples/` の模範と**見比べて答え合わせ**する
 
 ## データの出典
 
