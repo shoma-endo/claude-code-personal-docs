@@ -55,7 +55,7 @@ docs/
   training/
     claude-code-personal/
       claude-code-personal-training.md   # 1Day 個人研修の本体（編集対象）
-      sample-data/                     # 講義用ワークスペース（CLAUDE.md 等。受講者はこのフォルダを開く）
+      sample-data/                     # 講義用ワークスペース（CLAUDE.md 等）。ZIP 配布時は `講義サンプル/` として展開される（受講者が開くのはそのフォルダ）
 lib/
   markdown.ts           # slugify / extractToc / splitTrainingSections
   sample-data-zip.ts    # 講義用 sample-data の ZIP 生成（/api/sample-data）

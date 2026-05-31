@@ -13,7 +13,8 @@ const ZIP_IGNORE = ['claude-code-personal/**'];
 
 /**
  * sample-data フォルダを ZIP 化した Readable ストリームを返す。
- * ZIP 内のルートは `sample-data/`（解凍後にそのフォルダを開く想定）。
+ * ZIP 内のルートは `講義サンプル/`（解凍後にそのフォルダを開く想定）。
+ * 配布物の名前（`sample-data.zip`）とリポジトリ内パスは ASCII のまま。
  */
 export function createSampleDataZipStream(): Promise<Readable> {
   return new Promise((resolve, reject) => {
@@ -30,7 +31,7 @@ export function createSampleDataZipStream(): Promise<Readable> {
       cwd: SAMPLE_DATA_DIR,
       dot: true,
       ignore: ZIP_IGNORE,
-    }, { prefix: 'sample-data/' });
+    }, { prefix: '講義サンプル/' });
 
     archive.finalize();
   });
