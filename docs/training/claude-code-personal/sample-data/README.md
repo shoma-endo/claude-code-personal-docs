@@ -9,15 +9,14 @@ Claude Code 個人向け 1Day 講義の演習用フォルダです。**エディ
 ## エディターで開く
 
 1. **`sample-data` フォルダ** を VS Code / Cursor / Antigravity IDE で「フォルダを開く」
-2. 内蔵ターミナル（`` Ctrl + ` ``）で同じフォルダにいることを確認
-3. `claude` を起動（事前準備で済ませておく）
+2. 内蔵ターミナル（`` Ctrl + ` ``）を開いて `claude` を起動（事前準備で済ませておく）
 
 ```bash
 claude
 ```
 
 > [!IMPORTANT]
-> ルートに `CLAUDE.md`・`about-me.md`・`meeting-memo.txt` が並んで見えていれば正しい階層です。
+> ルートに `CLAUDE.md`・`自己紹介.md`・`議事メモ.txt` が並んで見えていれば正しい階層です。
 
 ## フォルダ構成
 
@@ -25,16 +24,16 @@ claude
 sample-data/
 ├── README.md
 ├── CLAUDE.md                   # Session 2 §6 以降
-├── about-me.md                 # Session 2 §14 用（差し替え演習）
-├── meeting-memo.txt            # Session 2 §15 用（ダミー）
+├── 自己紹介.md                 # Session 2 §14 用（差し替え演習）
+├── 議事メモ.txt                # Session 2 §15 用（ダミー）
 ├── .claude/
 │   ├── settings.json           # §8 の設定例
 │   └── skills/
 │       └── meeting-summary/
 │           └── SKILL.md        # §11・§15 の Skill 例
 └── examples/                   # 演習後の模範（2 ファイル）
-    ├── about-me.md
-    └── meeting-summary.md
+    ├── 自己紹介.md
+    └── 議事録サマリー.md
 ```
 
 ## ダウンロード後にやること（はじめての方向け・順番）
@@ -53,8 +52,8 @@ sample-data/
 | 1 | プロジェクトルールを Claude に要約させる | `CLAUDE.md` | §6 |
 | 2 | 設定ファイルの置き場所を知る（中身はほぼ空でOK） | `.claude/settings.json` | §8 |
 | 3 | Skill（定型手順）の中身を読む | `.claude/skills/meeting-summary/SKILL.md` | §11 |
-| 4 | 自己紹介を自分用に差し替える | `about-me.md`（模範: `examples/about-me.md`） | §14 |
-| 5 | 議事メモを要約して保存する | `meeting-memo.txt` → `meeting-summary.md`（模範: `examples/meeting-summary.md`） | §15 |
+| 4 | 自己紹介を自分用に差し替える | `自己紹介.md`（模範: `examples/自己紹介.md`） | §14 |
+| 5 | 議事メモを要約して保存する | `議事メモ.txt` → `議事録サマリー.md`（模範: `examples/議事録サマリー.md`） | §15 |
 | 6 | ルールを 1 行追記する | `CLAUDE.md` | §16 |
 
 > [!TIP]
