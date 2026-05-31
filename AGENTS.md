@@ -4,3 +4,4 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 For architecture, directory structure, key files, and commands, see [README.md](./README.md).
 
+**ブランチは切らずに全てmainにマージすること**
