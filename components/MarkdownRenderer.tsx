@@ -241,7 +241,7 @@ function makeComponents(scope: string): Components {
   },
   table: ({ children }) => (
     <div className="overflow-x-auto mb-4 w-full">
-      <table className="min-w-full border-collapse border border-slate-300 rounded-lg whitespace-nowrap">
+      <table className="min-w-full border-collapse border border-slate-300 rounded-lg">
         {children}
       </table>
     </div>
@@ -252,12 +252,12 @@ function makeComponents(scope: string): Components {
   ),
   tr: ({ children }) => <tr className="hover:bg-slate-50">{children}</tr>,
   th: ({ children }) => (
-    <th className="px-4 py-3 text-left text-sm font-semibold text-slate-700 border border-slate-300">
+    <th className="min-w-20 sm:min-w-28 px-3 sm:px-4 py-3 text-left text-sm font-semibold text-slate-700 border border-slate-300 break-words">
       {children}
     </th>
   ),
   td: ({ children }) => (
-    <td className="px-4 py-3 text-sm text-slate-600 border border-slate-300">
+    <td className="min-w-20 sm:min-w-28 px-3 sm:px-4 py-3 text-sm text-slate-600 border border-slate-300 break-words">
       {children}
     </td>
   ),
@@ -266,13 +266,13 @@ function makeComponents(scope: string): Components {
     return (
       <a
         href={href}
-        className="text-slate-700 hover:text-slate-900 underline inline-flex items-center gap-0.5"
+        className="text-slate-700 hover:text-slate-900 underline [overflow-wrap:anywhere]"
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
       >
         {children}
         {isExternal && (
-          <svg xmlns="http://www.w3.org/2000/svg" className="inline size-3 shrink-0 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" className="inline size-3 shrink-0 ml-0.5 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         )}

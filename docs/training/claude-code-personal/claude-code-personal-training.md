@@ -41,11 +41,23 @@
 
 動画と画面が違って迷ったときは、公式の **ネイティブインストール（推奨）** のコマンドをターミナルに貼り付けて実行してください（[公式セットアップ手順](https://code.claude.com/docs/ja/setup)）。
 
-| OS / ターミナル | インストールコマンド |
-|---|---|
-| Mac（ターミナル） | `curl -fsSL https://claude.ai/install.sh \| bash` |
-| Windows（PowerShell） | `irm https://claude.ai/install.ps1 \| iex` |
-| Windows（コマンドプロンプト） | `curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd` |
+**Mac（ターミナル）**
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+**Windows（PowerShell）**
+
+```text
+irm https://claude.ai/install.ps1 | iex
+```
+
+**Windows（コマンドプロンプト）**
+
+```text
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
 
 - インストール中は進捗が表示されません。終わったら **ターミナルを開き直して** `claude --version` を実行し、バージョン番号が出れば成功です
 - 初回に `claude` を起動すると、ブラウザでのログインを求められます。Pro 以上のアカウントでログインしてください

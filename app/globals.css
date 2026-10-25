@@ -84,7 +84,7 @@
     background: transparent !important;
   }
 
-  /* Tables: allow wrap on paper (whitespace-nowrap clips content) */
+  /* Tables: fit the page width on paper instead of scrolling */
   table {
     white-space: normal !important;
     table-layout: auto !important;
