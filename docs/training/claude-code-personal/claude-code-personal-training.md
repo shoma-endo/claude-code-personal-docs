@@ -971,9 +971,12 @@ AI 秘書を使うには、まず cc-secretary プラグインを導入します
 > [!TIP]
 > うまく有効にならないときは、いったん `/exit` で終了し、ターミナルで再度 `claude` を起動してください（再起動でも有効化されます）。
 
+> [!NOTE]
+> プラグインの Skill は「`/プラグイン名:Skill名`」の形で登録されるため、`/` を打ったときの候補一覧には **`/secretary:secretary`** と表示されます。入力は `/secretary` だけで OK です（Enter を押すと候補の `/secretary:secretary` が実行されます）。
+
 完了の目安
 
-- `/secretary` が認識される
+- `/` を打つと候補に `/secretary:secretary` が表示される
 - エラーなく AI 秘書（管理モード）が起動する
 
 ### 3. AI 秘書でできること
@@ -1005,18 +1008,29 @@ cc-secretary は、Claude Code 上で動く業務秘書プラグインです。�
 /secretary
 ```
 
-AI 秘書からヒアリングが始まります。回答例
+AI 秘書からヒアリングが始まります。質問は **選択肢から選ぶ形式** で出るので、`↑` `↓` キーで選んで Enter を押します（当てはまるものがなければ `Type something.` を選んで自由に入力できます）。
 
-```text
-個人でWeb制作とコンサルをしています。
-午前は制作、午後は打ち合わせと資料作成が中心です。
-管理したい領域は、タスク、メモ、アイデア、プロジェクト管理です。
-```
+| 順番 | 質問 | 回答例（個人で Web 制作をしている場合） |
+|---|---|---|
+| 1 | あなたの主な役割や職業 | `フリーランス` |
+| 2 | 典型的な 1 日の流れ | `午前に集中作業・午後に打合せ` |
+| 3 | 管理したい領域（複数選択） | `TODO`・`プロジェクト管理`・`アイデア` |
+| 4 | 使う言語 | `日本語` |
+| 5 | `.secretary/` を作る場所 | `カレントディレクトリ`（今開いているフォルダ） |
+| 6 | フォルダ構成の確認 | `OK（この構成で生成）` |
+
+> [!TIP]
+> **複数選択の質問（3 番）の操作** — 番号キーを押すと `[✔]` が付いたり外れたりします。選び終わったら `Tab` で次の質問へ進み、最後の **Submit** 画面で `Submit answers` を選びます。質問はタブ形式で並んでおり、`Tab` / `Shift + Tab` で行き来できます。
+
+途中で、テンプレートを読み込むコマンドや `.secretary/` を作るコマンドの **許可ダイアログ** が出ます（Manual モードの場合）。実行内容が `.secretary` フォルダ内の作成であることを確認して `Yes` を選んでください。
 
 完了の目安
 
-- `.secretary/` が生成される
+- `.secretary/` が生成される（`CLAUDE.md`・`inbox/`・`reviews/`・`todos/` などが入っている）
 - 業務カテゴリや inbox が確認できる
+
+> [!NOTE]
+> `.secretary/CLAUDE.md` には、オンボーディングで答えた内容（役割・1 日の流れ・使う言語など）と、管理モードのルールが書き込まれます。AI 秘書はこのファイルを読んで動きます。
 
 ### 5. 基本操作
 
@@ -1055,6 +1069,8 @@ AI 秘書からヒアリングが始まります。回答例
 ```text
 カテゴリ追加 顧客対応
 ```
+
+新しいフォルダが作られ、`.secretary/CLAUDE.md` のフォルダ一覧にも追記されます（フォルダ名は `customer-support` のように英語になることがあります）。
 
 `.secretary/` を開き、構造を確認します。
 
@@ -1114,7 +1130,7 @@ rules.md には秘書運用ルールを書いてください。
 |---|---|
 | カバー範囲 | メッセンジャー、Docs、Base、Sheets、カレンダー、メール、タスク、会議など **18 業務ドメイン** |
 | コマンド数 | **200+** の厳選コマンド |
-| AI 向け Skill | **26** の Agent Skill（`lark-calendar`、`lark-doc`、`lark-base` など） |
+| AI 向け Skill | **約 30** の Agent Skill（2026 年 10 月時点で 28 個。`lark-calendar`、`lark-doc`、`lark-base` など） |
 | ライセンス | MIT（`npm install` で利用開始可能） |
 | 設計思想 | Agent 向けに最適化（簡潔な引数、スマートデフォルト、構造化出力） |
 
@@ -1142,16 +1158,32 @@ cc-secretary が **ローカルファイル** で秘書業務を担うのに対�
 npx @larksuite/cli@latest install
 ```
 
+このコマンドを実行すると **インストールウィザード** が始まり、§10 の設定まで続けて進みます（v1.0.98 時点）。
+
+| 順番 | 画面に出ること | すること |
+|---|---|---|
+| 1 | `请选择语言 / Select language`（言語選択） | **初期選択は「中文」** です。`↓` キーで **`English`** を選んで Enter |
+| 2 | `Installed globally` / `Skills installed` | 自動で進みます（CLI 本体と Agent Skills のインストール） |
+| 3 | QR コードと URL（アプリ設定） | 表示された **URL をブラウザで開き**、Lark アカウントでアプリを作成します（§10-1 と同じ内容） |
+| 4 | AI に Lark のデータへのアクセスを許可するかの確認 | 内容を読んで許可します |
+| 5 | ユーザーログイン | ブラウザで承認します（§10-2 と同じ内容） |
+
+> [!NOTE]
+> 手順 3 で表示される URL は `open.feishu.cn`（中国版 Feishu）で、画面の一部が中国語で表示されることがあります。Lark CLI は **Feishu 側からアプリ登録を始め、Lark のアカウントを検知すると自動で Lark 用に切り替える** 仕組みです（`Detected Lark tenant, switching endpoint...` と表示されます）。URL は改変せずにそのまま開いてください。
+
+> [!TIP]
+> 途中で止めてしまった・失敗した場合は、§10 のコマンドを個別に実行すれば続きから設定できます。
+
 #### Agent Skill のインストール（Claude Code 連携用）
 
-Claude Code から Lark を操作するには、公式リポジトリ付属の **Agent Skills** を入れておきます。npm インストール後、次を実行します。
+Claude Code から Lark を操作するための **Agent Skills** は、上のウィザード（手順 2）で **自動的にインストール** されます。ウィザードで `Failed to install skills` と表示された場合だけ、次のコマンドで手動インストールしてください。
 
 ```bash
 npx skills add larksuite/cli -y -g
 ```
 
 > [!NOTE]
-> `skills` は、**Skill**（Session 2 で触れた、Claude に追加能力を持たせる仕組み）を Claude Code などの AI ツールにまとめてインストールするための CLI です（Claude Code の Skill は、複数の AI ツールで共通に使える [Agent Skills](https://agentskills.io) というオープン標準に沿っています）。`npx skills ...` で都度実行できるため事前インストールは不要で、ここでは GitHub リポジトリ `larksuite/cli` が同梱する Skill 群（`lark-calendar`、`lark-doc` など 26 種）を取得しています。cc-secretary が `/plugin` で配布されるのに対し、Lark CLI の Skill はこの `skills add` で配布される、と覚えてください。
+> `skills` は、**Skill**（Session 2 で触れた、Claude に追加能力を持たせる仕組み）を Claude Code などの AI ツールにまとめてインストールするための CLI です（Claude Code の Skill は、複数の AI ツールで共通に使える [Agent Skills](https://agentskills.io) というオープン標準に沿っています）。`npx skills ...` で都度実行できるため事前インストールは不要で、ここでは GitHub リポジトリ `larksuite/cli` が同梱する Skill 群（`lark-calendar`、`lark-doc` など）を取得しています。cc-secretary が `/plugin` で配布されるのに対し、Lark CLI の Skill はこの `skills add` で配布される、と覚えてください。
 
 `-g` はグローバル配置（どのプロジェクトからも参照可）です。講義用プロジェクトだけに置く場合は `-g` を外し、プロジェクト直下で実行してください。
 
@@ -1165,7 +1197,7 @@ lark-cli --version
 
 ### 10. Lark CLI の設定
 
-インストール後、**アプリ作成・認証情報の登録** → **ユーザー OAuth ログイン** の 2 段階が必要です。
+インストール後、**アプリ作成・認証情報の登録** → **ユーザー OAuth ログイン** の 2 段階が必要です。§9 のインストールウィザードを最後まで進めた場合は両方とも済んでいるので、**§10-3 で確認だけ** してください。
 
 #### 10-1. アプリ作成・認証情報の登録（初回のみ）
 
@@ -1183,7 +1215,7 @@ lark-cli config init --new
 lark-cli config init
 ```
 
-対話形式でモードを選択するプロンプトが表示されます。既存アプリの `App ID` と `App Secret` を入力して登録してください。
+対話形式でモードを選択するプロンプトが表示されます。`Enter app credentials yourself` を選び、プラットフォームは **Lark** を選んで、既存アプリの `App ID` と `App Secret` を入力して登録してください。
 
 > 手順の詳細は [公式 Quick Start](https://github.com/larksuite/cli#installation--quick-start) を参照してください。
 
@@ -1195,7 +1227,7 @@ lark-cli config init
 lark-cli auth login --recommend
 ```
 
-`--recommend` は、よく使うスコープをまとめて承認するオプションです。講義ではこれを使うのが簡単です。
+`--recommend` は、**すべての業務ドメインの権限をまとめて要求** するオプションです（`--domain all` と同じ。オプションを何も付けない `auth login` も同じ動きになります）。講義ではこれを使うのが簡単です。業務で使うときは、`--domain` で必要なドメインだけに絞ると安全です。
 
 その他のログイン例
 
@@ -1228,15 +1260,16 @@ lark-cli auth status
 | `auth check` | 特定スコープの有無確認（0=OK、1=不足） |
 | `auth scopes` | アプリで利用可能なスコープ一覧 |
 | `auth list` | 認証済みユーザー一覧 |
+| `auth qrcode` | 認証用 URL の QR コードを表示（スマホで承認したいとき） |
 
 #### ユーザー / Bot の使い分け
 
 | 種別 | フラグ | 用途 |
 |---|---|---|
-| ユーザー | `--as user`（デフォルト想定） | 自分のカレンダー、Docs、タスクなど |
+| ユーザー | `--as user` | 自分のカレンダー、Docs、タスクなど |
 | アプリ（Bot） | `--as bot` | アプリ名義のメッセージ送信など |
 
-講義では **個人の Lark データ** を扱うため、基本は **`--as user`** です。
+講義では **個人の Lark データ** を扱うため、基本は **`--as user`** です。`--as` を省略すると設定やログイン状態から自動で決まり、ログイン前などは **Bot 名義** になることがあるため、講義では明示してください。
 
 ### 11. Features — Lark CLI でできること
 
@@ -1256,7 +1289,7 @@ lark-cli auth status
 | 📚 Wiki | ナレッジスペース・ノード・ドキュメントの管理 |
 | 👤 連絡先 | 名前・メール・電話でのユーザー検索、プロフィール取得 |
 | 📧 メール | メールの閲覧・検索・送信・返信・転送、下書き、新着監視 |
-| 🎥 会議 | 会議録の検索、議事録・録画などの成果物取得 |
+| 🎥 会議 | 進行中・過去の会議の検索、参加者や議事録・録画などの成果物の確認、文字起こしの分析 |
 | 🕐 勤怠 | 自分の打刻記録の照会 |
 | ✍️ 承認 | 承認タスクの照会、承認・却下・転送、インスタンスのキャンセル・CC |
 | 🎯 OKR | OKR の照会・作成・更新、目標・KR・進捗の管理 |
@@ -1275,7 +1308,7 @@ Lark CLI は用途に応じて 3 段階の粒度で API を呼び出せます。
 
 #### 公式 Agent Skills（抜粋）
 
-Claude Code 連携時に参照される Skill の例です（全 26 種。詳細は [GitHub README](https://github.com/larksuite/cli#agent-skills)）。
+Claude Code 連携時に参照される Skill の例です（2026 年 10 月時点で 28 種。詳細は [GitHub README](https://github.com/larksuite/cli#agent-skills)）。
 
 | Skill | 説明 |
 |---|---|
@@ -1312,7 +1345,7 @@ lark-cli を使って、自分に割り当てられている未完了タスク�
 #### Docs — ドキュメント作成（Shortcut 例）
 
 ```bash
-lark-cli docs +create --api-version v2 --doc-format markdown --content $'<title>講義メモ</title>\n# 本日の要点\n- Session 2: Claude Code 基礎\n- Session 3: AI 秘書と Lark CLI'
+lark-cli docs +create --as user --doc-format markdown --content $'<title>講義メモ</title>\n# 本日の要点\n- Session 2: Claude Code 基礎\n- Session 3: AI 秘書と Lark CLI'
 ```
 
 #### Base — 表の操作
@@ -1329,8 +1362,8 @@ lark-cli を使って、個人用の Base 表を新規作成し、
 #### 連携の流れ
 
 1. §1〜§7 で **cc-secretary（AI 秘書）を先に完了** する
-2. §9 で `lark-cli` と Agent Skills をインストール
-3. §10 で `config init --new`（新規アプリ）または `config init`（既存アプリ）と `auth login --recommend` を完了
+2. §9 のインストールウィザードで `lark-cli` と Agent Skills をインストール（そのままアプリ設定・ログインまで進む）
+3. ウィザードを途中でやめた場合は、§10 で `config init --new`（新規アプリ）または `config init`（既存アプリ）と `auth login --recommend` を完了
 4. 自然言語で依頼 → Claude が `lark-cli` コマンドまたは Skill を実行
 
 > [!NOTE]
@@ -1468,11 +1501,12 @@ Lark の未完了タスクを確認し、期限が近いものを3件ピック�
 | `/plugin marketplace add Shin-sibainu/cc-secretary` | マーケットプレイスへの追加 |
 | `/plugin install secretary@cc-secretary` | プラグインの導入（詳細画面でスコープを選ぶ） |
 | `/reload-plugins` | 導入したプラグインを再起動せずに有効化 |
-| `/secretary` | 管理モード起動 |
+| `/secretary` | 初回はオンボーディング、2 回目以降は管理モード起動（候補一覧では `/secretary:secretary` と表示） |
 | `タスク追加 〜` | TODO に追加 |
 | `今日のタスク` | 今日のタスク一覧 |
 | `メモ 〜` | inbox にすぐ書き留める |
 | `アイデア 〜` | アイデアファイル作成 |
+| `調査 〜` | リサーチファイル作成 |
 | `週次レビュー` | 今週のまとめを生成 |
 | `ダッシュボード` | 全カテゴリ俯瞰 |
 | `受信箱整理` | inbox 整理支援 |
@@ -1482,11 +1516,11 @@ Lark の未完了タスクを確認し、期限が近いものを3件ピック�
 
 | コマンド | 動作 |
 |---|---|
-| `npx @larksuite/cli@latest install` | Lark CLI のインストール |
-| `npx skills add larksuite/cli -y -g` | Agent Skills のインストール |
+| `npx @larksuite/cli@latest install` | Lark CLI のインストール（ウィザードで Skills・アプリ設定・ログインまで進む） |
+| `npx skills add larksuite/cli -y -g` | Agent Skills の手動インストール（ウィザードで失敗したときだけ） |
 | `lark-cli config init --new` | 新規アプリ作成・認証情報登録 |
 | `lark-cli config init` | 既存アプリの認証情報登録 |
-| `lark-cli auth login --recommend` | ユーザー OAuth（推奨スコープ） |
+| `lark-cli auth login --recommend` | ユーザー OAuth（全業務ドメインの権限をまとめて要求） |
 | `lark-cli auth status` | ログイン状態の確認 |
 
 ### Lark CLI — よく使う Shortcuts
@@ -1526,6 +1560,8 @@ Lark の未完了タスクを確認し、期限が近いものを3件ピック�
 | `/secretary` が認識されない | `/reload-plugins` を実行。それでもダメなら `/exit` → `claude` で再起動 |
 | `.secretary/` が見つからない | 作業フォルダを確認する |
 | 実名を入れてしまった | すぐに匿名化して保存し直す |
+| インストール画面が中国語になった | 最初の言語選択で `English` を選ぶ（初期選択は「中文」）。やり直すときは `npx @larksuite/cli@latest install` を再実行 |
+| `Failed to install skills` と表示された | `npx skills add larksuite/cli -y -g` を実行 |
 | `lark-cli: command not found` | `npx @larksuite/cli@latest install` を再実行 |
 | Lark で権限エラー | `lark-cli auth login --recommend` を再実行 |
 | Lark の操作が失敗する | `lark-cli auth status` と `--as user` を確認 |
