@@ -96,13 +96,16 @@
 | 表記 | 読み方 | 受講者への説明 |
 |---|---|---|
 | `Yes` | イエス | 今回の操作だけ許可。基本はこれを選ぶ |
-| `Yes, allow all edits during this session` | イエス、アロウ・オール・エディッツ・デュアリング・ディス・セッション | このセッション中の編集をすべて許可（以後ダイアログが出なくなる）。頻出操作に慣れてから検討 |
+| `Yes, and switch to accept edits (auto-approve file edits and common file commands) for this session` | イエス、アンド・スイッチ・トゥ・アクセプト・エディッツ・フォー・ディス・セッション | このセッション中は Accept edits モードに切り替え、以後の編集を確認なしで許可（ダイアログが出なくなる）。頻出操作に慣れてから検討。末尾の `(shift+tab)` は「Shift+Tab でも同じ切り替えができる」という意味 |
 | `No` | ノー | 拒否。`Tab` でコメント欄を開くと「拒否して別の指示を出す」ことができる（版によっては `No, and tell Claude what to do differently`＝ノー、アンド・テル・クロード・ホワット・トゥ・ドゥ・ディファレントリー と表示） |
 | `Yes, and don't ask again` | イエス、アンド・ドント・アスク・アゲイン | コマンド実行時に出る。次回以降も同じコマンドは聞かない（`.claude/settings.local.json` に保存）。講義中は選ばない |
 | `Yes, and switch to auto mode` | イエス、アンド・スイッチ・トゥ・オート・モード | コマンド実行時に出る。許可して Auto モードに切り替える。講義中は選ばない |
 
 > [!NOTE]
 > 「セッション中」= `claude` を起動してから終了（`/exit`）するまで。終了すると許可はリセットされ、次回起動時にまた確認が出ます。
+
+> [!WARNING]
+> **フォルダの信頼確認に注意** — 新しいフォルダで初めて `claude` を起動すると「Quick safety check: Is this a project you created or one you trust?」が出る。**初期選択が `No, exit`** なので、Enter 連打の受講者は終了してしまう。「`↓` で `Yes, I trust this folder` を選んでから Enter」と口頭で必ず伝える（事前準備 ③・講義サンプルを開いた直後の 2 回）。
 
 ---
 

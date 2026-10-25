@@ -130,7 +130,12 @@
 2. メニューから **フォルダを開く**（講義用フォルダ、または空の新規フォルダ）
 3. **ターミナル**パネルを表示する（`` Ctrl + ` ``）
 4. ターミナルに `claude` と入力して Enter
-5. Claude から返事が来たら準備完了
+5. 初回だけ、配色（テーマ）の選択や注意事項の確認が出るので Enter で進む
+6. 「**Quick safety check: Is this a project you created or one you trust?**」（このフォルダを信頼しますか）と聞かれたら、`↓` キーで **`Yes, I trust this folder`** を選んで Enter
+7. Claude から返事が来たら準備完了
+
+> [!WARNING]
+> 手順 6 の確認画面は、最初から **`No, exit`（終了する）** が選ばれた状態で表示されます。そのまま Enter を押すと Claude Code が終了してしまうので、必ず `Yes, I trust this folder` に切り替えてから Enter を押してください（新しいフォルダで初めて起動するたびに聞かれます）。
 
 ### 準備チェックリスト
 
@@ -315,12 +320,14 @@ Claude Code には、**どこまで確認なしで動いてよいか** を決め
 
 Manual モードでは、Claude Code がファイル編集やコマンド実行を行う前に、次のような許可ダイアログが出ます。
 
-![Claude Code の許可ダイアログ。Yes / Yes allow all edits during this session / No の 3 択が表示される](/assets/images/training/session2/permission-dialog.png)
+![Claude Code の許可ダイアログ。自己紹介.md の変更前後の差分の下に「Do you want to make this edit to 自己紹介.md?」と表示され、1. Yes / 2. Yes, and switch to accept edits for this session / 3. No の 3 択が並ぶ](/assets/images/training/session2/permission-dialog.png)
+
+画面には **変更前（赤）と変更後（緑）の差分** が表示されるので、何が書き換わるかを確認してから選びます（上の画像は §14 の依頼をしたときの実際の画面です）。
 
 | 選択肢 | 意味 | この段階での目安 |
 |---|---|---|
 | `Yes` | 今回だけ許可 | 基本はこれ |
-| `Yes, allow all edits during this session` | セッション中すべての編集を許可（終了するとリセット） | 頻出操作だけ慣れてから検討 |
+| `Yes, and switch to accept edits (...) for this session` | このセッションの間だけ Accept edits モードに切り替え、以後のファイル編集と基本的なファイル操作を確認なしで許可（終了するとリセット。`Shift + Tab` と同じ） | 頻出操作だけ慣れてから検討 |
 | `No` | 拒否（`Tab` でコメントを付けて、別のやり方を指示することもできる） | 意図しない操作なら選ぶ |
 
 コマンド実行のダイアログでは、`Yes, and don't ask again`（このコマンドは次回以降も聞かない）や `Yes, and switch to auto mode`（許可して Auto モードに切り替える）が出ることもあります。**講義中はどちらも選ばず、`Yes` か `No` を選んでください。**
@@ -377,7 +384,7 @@ Claude Code は、**あなたがプロンプト（依頼文）を送るたびに
 
 1. 上のボタンを押して **`講義サンプル.zip`** を取得する
 2. ダウンロードした **`講義サンプル.zip`** を展開し、出てきた **`講義サンプル` フォルダ** をエディターで開く
-3. 内蔵ターミナルで `claude` を起動できることを確認する
+3. 内蔵ターミナルで `claude` を起動できることを確認する（フォルダの信頼確認が出たら `↓` で **`Yes, I trust this folder`** を選んで Enter。画面下部に `⏸ manual mode on` と出ていれば OK）
 
 ![講義サンプル.zip を取得し、出てきた講義サンプルフォルダをエディターで開き、必要なファイルを確認してから claude を起動する流れ](/assets/images/training/session2/sample-data-setup-flow.png)
 
@@ -1496,6 +1503,7 @@ Lark の未完了タスクを確認し、期限が近いものを3件ピック�
 | 内容が期待と違う | 編集前確認が不足 | 「まだ編集せず、改善案だけ出して」と戻る |
 | 返答が鈍くなる | コンテキストが満杯 | `/context` → `/compact` または `/clear` |
 | 別フォルダで作業している | エディターで開いているフォルダが違う | エディターで **`講義サンプル` フォルダ** を開き直してから再開 |
+| `claude` を起動したらすぐ終了した | フォルダの信頼確認で `No, exit`（初期選択）のまま Enter を押した | もう一度 `claude` を起動し、`↓` で `Yes, I trust this folder` を選んで Enter |
 
 ### AI 秘書 / Lark CLI
 
