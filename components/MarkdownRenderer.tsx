@@ -183,12 +183,12 @@ function makeComponents(scope: string): Components {
     return <p className="mb-4 text-slate-600 leading-relaxed">{children}</p>;
   },
   ul: ({ children }) => (
-    <ul className="list-disc list-inside mb-4 space-y-1.5 text-slate-600">
+    <ul className="list-disc list-inside mb-4 space-y-1.5 text-slate-600 [&_ul]:mt-1.5 [&_ul]:mb-0 [&_ul]:pl-6 [&_ol]:mt-1.5 [&_ol]:mb-0 [&_ol]:pl-6">
       {children}
     </ul>
   ),
   ol: ({ children }) => (
-    <ol className="list-decimal list-inside mb-4 space-y-1.5 text-slate-600">
+    <ol className="list-decimal list-inside mb-4 space-y-1.5 text-slate-600 [&_ul]:mt-1.5 [&_ul]:mb-0 [&_ul]:pl-6 [&_ol]:mt-1.5 [&_ol]:mb-0 [&_ol]:pl-6">
       {children}
     </ol>
   ),
