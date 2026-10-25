@@ -70,12 +70,6 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
 - ネイティブインストールは **自動でアップデート** されます（Homebrew・WinGet で入れた場合は手動更新が必要）
 - Windows では [Git for Windows](https://git-scm.com/downloads/win) の導入が推奨です（未導入でも PowerShell で動作します）
 
-#### 参考動画
-
-画面の流れを先に見ておきたい方向けの解説動画です（外部の作成者による動画で、撮影時期により手順や画面が上のコマンドと異なる場合があります）。**動画と上の手順が違うときは、上の手順を優先してください。** たとえば、動画で Node.js を入れてから `npm install -g ...` で入れていたり、Windows で WSL を準備していたりしても、現在は不要です。
-
-- [世界一わかりやすいClaude Codeのセットアップ手順（Mac & Windows）実画面で解説](https://www.youtube.com/watch?v=_rskJ6I0H-s)
-
 ### ② エディターのインストール
 
 エディターに内蔵されたターミナルを使用するため、以下のいずれか **1 つ** をインストールしてください。
