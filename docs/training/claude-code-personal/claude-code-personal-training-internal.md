@@ -250,10 +250,8 @@
 
 Session 3 では **cc-secretary を Lark CLI より先に必ず完了** してください。
 
-| 順番 | ブロック | 節 | 内容 |
-|:---:|---|---|---|
-| **1** | AI 秘書 | §1〜§7 | cc-secretary のインストール → オンボーディング → 基本操作 |
-| **2** | Lark CLI | §8〜§13 | Lark CLI のインストール → 設定 → Features・基本操作 |
+- **1. AI 秘書**〔§1〜§7〕 cc-secretary のインストール → オンボーディング → 基本操作
+- **2. Lark CLI**〔§8〜§13〕 Lark CLI のインストール → 設定 → Features・基本操作
 
 ### Session 3 — 進行表
 
