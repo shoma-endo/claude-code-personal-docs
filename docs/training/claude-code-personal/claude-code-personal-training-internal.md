@@ -273,7 +273,7 @@ Session 3 では **cc-secretary を Lark CLI より先に必ず完了** して�
 
 | リソース | URL |
 |---|---|
-| インストール動画 | https://www.youtube.com/watch?v=_rskJ6I0H-s |
+| インストール動画（参考扱い。受講者ページの主手順は公式コマンド） | https://www.youtube.com/watch?v=_rskJ6I0H-s |
 | インストール文字起こし（社内 Lark） | https://mjpt22tawf9f.jp.larksuite.com/docx/LEiVdTiftoKEAuxkqABj16ZEph6 |
 
 ---

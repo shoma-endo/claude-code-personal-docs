@@ -35,11 +35,14 @@
 > - **② エディター** と **③ ターミナル・エディターの説明** を先に済ませてから本項を実施してください。確認は **③ の「初回の開き方」** で行います。
 > - Claude Code を使うには **Pro プラン（有料）以上** が必須です（Pro / Max / Team / Enterprise のいずれか）。プランの詳細は [https://claude.com/ja/pricing](https://claude.com/ja/pricing)
 
-以下の動画を参考に、Mac または Windows へのインストールを行ってください。Claude Code からメッセージが返ってくるところまで完了すれば OK です。
+公式の **ネイティブインストール（推奨）** の手順でインストールします（[公式セットアップ手順](https://code.claude.com/docs/ja/setup)）。Claude Code からメッセージが返ってくるところまで完了すれば OK です。
 
-- **インストール動画** [https://www.youtube.com/watch?v=_rskJ6I0H-s](https://www.youtube.com/watch?v=_rskJ6I0H-s)
+#### 手順
 
-動画と画面が違って迷ったときは、公式の **ネイティブインストール（推奨）** のコマンドをターミナルに貼り付けて実行してください（[公式セットアップ手順](https://code.claude.com/docs/ja/setup)）。
+1. ② で入れたエディターを開き、内蔵ターミナルを表示する（`` Ctrl + ` ``）
+2. 下のコマンドから自分の環境に合うものを **1 つだけ** コピーして貼り付け、Enter を押す
+3. 終わったら **ターミナルを開き直して** `claude --version` を実行し、バージョン番号が出れば成功
+4. `claude` と入力して起動し、ブラウザでログインする（Pro 以上のアカウント）
 
 **Mac（ターミナル）**
 
@@ -59,10 +62,19 @@ irm https://claude.ai/install.ps1 | iex
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
-- インストール中は進捗が表示されません。終わったら **ターミナルを開き直して** `claude --version` を実行し、バージョン番号が出れば成功です
-- 初回に `claude` を起動すると、ブラウザでのログインを求められます。Pro 以上のアカウントでログインしてください
+> [!TIP]
+> **Windows はどちらを使う？** — 行の先頭に `PS C:\` と表示されていれば **PowerShell**、`C:\` だけなら **コマンドプロンプト** です。VS Code / Cursor の内蔵ターミナルは、通常 PowerShell です。
+
+- インストール中は進捗が表示されません。完了するまでしばらく待ってください
+- `claude` が見つからない（`command not found` / `認識されていません`）と出たら、ターミナルを開き直してから再度試してください。それでもダメなら [インストールのトラブルシューティング](https://code.claude.com/docs/ja/troubleshoot-install) を参照
 - ネイティブインストールは **自動でアップデート** されます（Homebrew・WinGet で入れた場合は手動更新が必要）
 - Windows では [Git for Windows](https://git-scm.com/downloads/win) の導入が推奨です（未導入でも PowerShell で動作します）
+
+#### 参考動画
+
+画面の流れを先に見ておきたい方向けの解説動画です（外部の作成者による動画で、撮影時期により手順や画面が上のコマンドと異なる場合があります）。**動画と上の手順が違うときは、上の手順を優先してください。** たとえば、動画で Node.js を入れてから `npm install -g ...` で入れていたり、Windows で WSL を準備していたりしても、現在は不要です。
+
+- [世界一わかりやすいClaude Codeのセットアップ手順（Mac & Windows）実画面で解説](https://www.youtube.com/watch?v=_rskJ6I0H-s)
 
 ### ② エディターのインストール
 
